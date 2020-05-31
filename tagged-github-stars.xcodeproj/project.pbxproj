@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 382D55C1248406E5001B6ED2 /* Alamofire */; };
 		38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992A247F43070031FBB9 /* AppDelegate.swift */; };
 		38FF992D247F43070031FBB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992C247F43070031FBB9 /* ContentView.swift */; };
 		38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */; };
@@ -59,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38FF9960247F5EAE0031FBB9 /* OctoKit in Frameworks */,
+				382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +160,7 @@
 			name = "tagged-github-stars";
 			packageProductDependencies = (
 				38FF995F247F5EAE0031FBB9 /* OctoKit */,
+				382D55C1248406E5001B6ED2 /* Alamofire */,
 			);
 			productName = "tagged-github-stars";
 			productReference = 38FF9927247F43070031FBB9 /* tagged-github-stars.app */;
@@ -233,6 +236,7 @@
 			mainGroup = 38FF991E247F43070031FBB9;
 			packageReferences = (
 				38FF995E247F5EAE0031FBB9 /* XCRemoteSwiftPackageReference "octokit" */,
+				382D55C0248406E5001B6ED2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 38FF9928247F43070031FBB9 /* Products */;
 			projectDirPath = "";
@@ -603,6 +607,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		382D55C0248406E5001B6ED2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 		38FF995E247F5EAE0031FBB9 /* XCRemoteSwiftPackageReference "octokit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nerdishbynature/octokit.swift";
@@ -614,6 +626,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		382D55C1248406E5001B6ED2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 382D55C0248406E5001B6ED2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		38FF995F247F5EAE0031FBB9 /* OctoKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 38FF995E247F5EAE0031FBB9 /* XCRemoteSwiftPackageReference "octokit" */;

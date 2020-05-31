@@ -8,7 +8,7 @@
 
 import Cocoa
 import SwiftUI
-import OctoKit
+import Alamofire
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,27 +17,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let config = TokenConfiguration("7ca26f451deef1f54d492288390098b84bf0d0a3")
-        Octokit(config).me() { response in
-          switch response {
-          case .success(let user):
-            print("=====successed to get user====")
-            print(user.login as Any)
-          case .failure(let error):
-            print(error)
-          }
+        AF.request("https://api.github.com/users/dongyuwei/starred?access_token=7ca26f451deef1f54d492288390098b84bf0d0a3")
+        .responseJSON { response in
+            if let links = response.response?.allHeaderFields["Link"] as? String {
+                    print("=======link====")
+                    print(links)
+            }
+            
+            if let result = response.value {
+                let JSON = result as! NSArray
+                print(JSON[0])
+            }
+
         }
         
-        
-        Octokit(config).myStars() { response in
-          switch response {
-          case .success(let repositories):
-                print("======successed to get stars====")
-                print(repositories)
-          case .failure(let error):
-            print(error)
-          }
-        }
 
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
