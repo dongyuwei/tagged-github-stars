@@ -8,6 +8,7 @@
 
 import Cocoa
 import SwiftUI
+import OctoKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,6 +17,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let config = TokenConfiguration("7ca26f451deef1f54d492288390098b84bf0d0a3")
+        Octokit(config).me() { response in
+          switch response {
+          case .success(let user):
+            print("=====successed to get user====")
+            print(user.login as Any)
+          case .failure(let error):
+            print(error)
+          }
+        }
+        
+        
+        Octokit(config).myStars() { response in
+          switch response {
+          case .success(let repositories):
+                print("======successed to get stars====")
+                print(repositories)
+          case .failure(let error):
+            print(error)
+          }
+        }
+
+        
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
