@@ -16,7 +16,6 @@
 		38FF9938247F430F0031FBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FF9936247F430F0031FBB9 /* Main.storyboard */; };
 		38FF9944247F430F0031FBB9 /* tagged_github_starsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF9943247F430F0031FBB9 /* tagged_github_starsTests.swift */; };
 		38FF994F247F430F0031FBB9 /* tagged_github_starsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF994E247F430F0031FBB9 /* tagged_github_starsUITests.swift */; };
-		38FF9960247F5EAE0031FBB9 /* OctoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 38FF995F247F5EAE0031FBB9 /* OctoKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FF9960247F5EAE0031FBB9 /* OctoKit in Frameworks */,
 				382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,7 +157,6 @@
 			);
 			name = "tagged-github-stars";
 			packageProductDependencies = (
-				38FF995F247F5EAE0031FBB9 /* OctoKit */,
 				382D55C1248406E5001B6ED2 /* Alamofire */,
 			);
 			productName = "tagged-github-stars";
@@ -235,7 +232,6 @@
 			);
 			mainGroup = 38FF991E247F43070031FBB9;
 			packageReferences = (
-				38FF995E247F5EAE0031FBB9 /* XCRemoteSwiftPackageReference "octokit" */,
 				382D55C0248406E5001B6ED2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 38FF9928247F43070031FBB9 /* Products */;
@@ -615,14 +611,6 @@
 				minimumVersion = 5.2.0;
 			};
 		};
-		38FF995E247F5EAE0031FBB9 /* XCRemoteSwiftPackageReference "octokit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nerdishbynature/octokit.swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.10.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -630,11 +618,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 382D55C0248406E5001B6ED2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		38FF995F247F5EAE0031FBB9 /* OctoKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38FF995E247F5EAE0031FBB9 /* XCRemoteSwiftPackageReference "octokit" */;
-			productName = OctoKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
