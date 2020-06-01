@@ -4,17 +4,21 @@ struct ContentView: View {
     @EnvironmentObject var store: StateStore
     
     var body: some View {
-        VStack(alignment: .leading) {
-            if store.stars.count == 0 {
-                Text("Loading stars...")
-            }
-            
-            ForEach(store.stars) {
-                Text("Project name: \($0.name), url: \($0.url)")
-                Divider()
-            }
-        }.padding(10)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        NavigationView {
+            VStack(alignment: .leading) {
+                if store.stars.count == 0 {
+                    Text("Loading stars...")
+                } else {
+                    List {
+                        ForEach(store.stars) { starItem in
+                            NavigationLink(destination: WebView(url: NSURL(string: starItem.url) as! URL)) {
+                                RepositoryView(repository: starItem)
+                            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        }
+                    }.frame(minWidth: 300, maxWidth: 300)
+                }
+            }.padding(10)
+        }
     }
 }
 

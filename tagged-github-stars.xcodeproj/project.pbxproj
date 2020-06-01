@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 382D55C1248406E5001B6ED2 /* Alamofire */; };
+		382D55C424852E1E001B6ED2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55C324852E1E001B6ED2 /* WebView.swift */; };
+		382D55C7248531AC001B6ED2 /* RepositoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55C6248531AC001B6ED2 /* RepositoryView.swift */; };
 		38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992A247F43070031FBB9 /* AppDelegate.swift */; };
 		38FF992D247F43070031FBB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992C247F43070031FBB9 /* ContentView.swift */; };
 		38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		382D55C324852E1E001B6ED2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		382D55C6248531AC001B6ED2 /* RepositoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryView.swift; sourceTree = "<group>"; };
 		38FF9927247F43070031FBB9 /* tagged-github-stars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tagged-github-stars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FF992A247F43070031FBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FF992C247F43070031FBB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		382D55C524853179001B6ED2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				382D55C324852E1E001B6ED2 /* WebView.swift */,
+				382D55C6248531AC001B6ED2 /* RepositoryView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		38FF991E247F43070031FBB9 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +115,7 @@
 		38FF9929247F43070031FBB9 /* tagged-github-stars */ = {
 			isa = PBXGroup;
 			children = (
+				382D55C524853179001B6ED2 /* view */,
 				38FF992A247F43070031FBB9 /* AppDelegate.swift */,
 				38FF992C247F43070031FBB9 /* ContentView.swift */,
 				38FF9931247F430F0031FBB9 /* Assets.xcassets */,
@@ -278,7 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				38FF992D247F43070031FBB9 /* ContentView.swift in Sources */,
+				382D55C424852E1E001B6ED2 /* WebView.swift in Sources */,
 				38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */,
+				382D55C7248531AC001B6ED2 /* RepositoryView.swift in Sources */,
 				38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

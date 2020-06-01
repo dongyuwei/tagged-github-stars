@@ -19,12 +19,16 @@ class StarItem: Identifiable, Hashable {
         hasher.combine(url)
     }
     
-    var name: String
+    var fullName: String
     var url: String
+    var description: String
+    var stargazersCount: Int
     
-    init(_ name: String, url: String) {
-        self.name = name
+    init(_ fullName: String, url: String, description: String, stargazersCount: Int) {
+        self.fullName = fullName
         self.url = url
+        self.description = description
+        self.stargazersCount = stargazersCount
     }
 }
 
@@ -58,12 +62,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 if let result = response.value {
                     let stars = result as! NSArray
+                    print(stars[0])
+                    print("==========")
                     stars.forEach { item in
                         let obj = item as! NSDictionary
-                        let starName = obj["name"]! as! String
-                        let url = obj["url"]! as! String
+                        let fullName = obj["full_name"]! as! String
+                        let url = obj["html_url"]! as! String
+                        let description = obj.value(forKey: "description") as? String ?? ""
+                        let stargazersCount = obj["stargazers_count"]! as! Int
                         
-                        store.addStarItem(StarItem(starName, url: url))
+                        store.addStarItem(StarItem(
+                            fullName, url: url,
+                            description: description, stargazersCount: stargazersCount))
                     }
                 }
             }
