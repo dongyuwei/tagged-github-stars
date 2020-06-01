@@ -10,21 +10,57 @@ import Alamofire
 import Cocoa
 import SwiftUI
 
+class StarItem: Identifiable, Hashable {
+    static func == (lhs: StarItem, rhs: StarItem) -> Bool {
+        return lhs.url == rhs.url
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(url)
+    }
+    
+    var name: String
+    var url: String
+    
+    init(_ name: String, url: String) {
+        self.name = name
+        self.url = url
+    }
+}
+
+class StateStore: ObservableObject {
+    @Published var userName = ""
+    @Published var stars: [StarItem] = []
+    
+    func addStarItem(_ item: StarItem) {
+        stars.append(item)
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let store = StateStore()
+        
         AF.request("https://api.github.com/users/dongyuwei/starred?access_token=7ca26f451deef1f54d492288390098b84bf0d0a3")
             .responseJSON { response in
                 if let links = response.response?.allHeaderFields["Link"] as? String {
                     print("=======link====")
                     print(links)
+                    print("=======link====")
                 }
                 
                 if let result = response.value {
-                    let JSON = result as! NSArray
-                    print(JSON[0])
+                    let stars = result as! NSArray
+                    stars.forEach { item in
+                        let obj = item as! NSDictionary
+                        let starName = obj["name"]! as! String
+                        let url = obj["url"]! as! String
+                        
+                        store.addStarItem(StarItem(starName, url: url))
+                    }
                 }
             }
         
@@ -39,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered, defer: false)
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
+        window.contentView = NSHostingView(rootView: contentView.environmentObject(store))
         window.makeKeyAndOrderFront(nil)
     }
     

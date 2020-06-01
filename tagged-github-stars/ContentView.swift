@@ -1,17 +1,15 @@
-//
-//  ContentView.swift
-//  tagged-github-stars
-//
-//  Created by Dong Yuwei  on 2020/5/28.
-//  Copyright © 2020 Dong Yuwei . All rights reserved.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var store: StateStore
+    
     var body: some View {
-        Text("github stars")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack(alignment: .leading) {
+            Text("Loading stars...")
+            ForEach(store.stars, id: \.self) {
+                Text("Project name: \($0.name), url: \($0.url)")
+            }
+        }
     }
 }
 
