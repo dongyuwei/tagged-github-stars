@@ -11,13 +11,14 @@ struct ContentView: View {
                 } else {
                     List {
                         ForEach(store.stars) { starItem in
-                            NavigationLink(destination: WebView(url: NSURL(string: starItem.url) as! URL)) {
+                            NavigationLink(destination: WebView(url: URL(string: starItem.url)!)) {
                                 RepositoryView(repository: starItem)
                             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                         }
                     }.frame(minWidth: 300, maxWidth: 300)
                 }
             }.padding(10)
+                .frame(maxHeight: .infinity, alignment: .topLeading)
         }
     }
 }
