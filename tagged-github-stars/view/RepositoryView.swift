@@ -6,16 +6,15 @@ struct RepositoryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-//                Image(systemName: "doc.text")
                 Text(repository.fullName)
                     .bold()
             }
             
             Text(repository.description)
             HStack {
-//                Image(systemName: "star")
-                Text("\(repository.stargazersCount)")
+                Text("☆ \(repository.stargazersCount)")
             }
+            Divider()
         }
     }
 }
