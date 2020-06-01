@@ -44,7 +44,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let store = StateStore()
         
-        AF.request("https://api.github.com/users/dongyuwei/starred?access_token=7ca26f451deef1f54d492288390098b84bf0d0a3")
+        let headers: HTTPHeaders = [
+            "Authorization": "token 7ca26f451deef1f54d492288390098b84bf0d0a3",
+        ]
+        
+        AF.request("https://api.github.com/users/dongyuwei/starred", headers: headers)
             .responseJSON { response in
                 if let links = response.response?.allHeaderFields["Link"] as? String {
                     print("=======link====")
