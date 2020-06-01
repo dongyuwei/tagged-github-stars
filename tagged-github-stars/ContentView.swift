@@ -5,11 +5,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Loading stars...")
-            ForEach(store.stars, id: \.self) {
+            if store.stars.count == 0 {
+                Text("Loading stars...")
+            }
+            
+            ForEach(store.stars) {
                 Text("Project name: \($0.name), url: \($0.url)")
             }
-        }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
