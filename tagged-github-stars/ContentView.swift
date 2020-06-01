@@ -11,8 +11,10 @@ struct ContentView: View {
             
             ForEach(store.stars) {
                 Text("Project name: \($0.name), url: \($0.url)")
+                Divider()
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }.padding(10)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
