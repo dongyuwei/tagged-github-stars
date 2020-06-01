@@ -6,15 +6,13 @@
 //  Copyright © 2020 Dong Yuwei . All rights reserved.
 //
 
+import Alamofire
 import Cocoa
 import SwiftUI
-import Alamofire
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
     var window: NSWindow!
-    
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AF.request("https://api.github.com/users/dongyuwei/starred?access_token=7ca26f451deef1f54d492288390098b84bf0d0a3")
@@ -28,16 +26,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     let JSON = result as! NSArray
                     print(JSON[0])
                 }
-                
-        }
-        
-        
+            }
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
         
-        // Create the window and set the content view. 
+        // Create the window and set the content view.
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
@@ -62,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
          */
         let container = NSPersistentContainer(name: "tagged_github_stars")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -126,12 +121,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             // Customize this code block to include application-specific recovery steps.
             let result = sender.presentError(nserror)
-            if (result) {
+            if result {
                 return .terminateCancel
             }
             
             let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
-            let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info");
+            let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info")
             let quitButton = NSLocalizedString("Quit anyway", comment: "Quit anyway button title")
             let cancelButton = NSLocalizedString("Cancel", comment: "Cancel button title")
             let alert = NSAlert()
@@ -148,6 +143,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // If we got here, it is time to quit.
         return .terminateNow
     }
-    
 }
-
