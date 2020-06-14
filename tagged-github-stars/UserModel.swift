@@ -15,7 +15,7 @@ class UserModel {
             let fileUrl = documentDirectory.appendingPathComponent("users").appendingPathExtension("sqlite3")
             let database = try Connection(fileUrl.path)
             self.database = database
-            print("Database initialized at path \(fileUrl)")
+            print("Database users initialized at path \(fileUrl)")
             
             createTable()
         } catch {

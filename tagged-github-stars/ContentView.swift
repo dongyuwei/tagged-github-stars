@@ -12,9 +12,9 @@ struct ContentView: View {
                     VStack {
                         BasicUserInfoView()
                         List {
-                            ForEach(store.stars) { starItem in
-                                NavigationLink(destination: WebView(url: URL(string: starItem.url)!)) {
-                                    StarRepoItemView(repository: starItem)
+                            ForEach(store.stars) { starRepo in
+                                NavigationLink(destination: StarRepoDetailView(starRepo: starRepo)) {
+                                    StarRepoItemView(starRepo: starRepo)
                                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             }
                         }.frame(minWidth: 300, maxWidth: 300)

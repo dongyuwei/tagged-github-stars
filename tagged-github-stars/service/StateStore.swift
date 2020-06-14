@@ -6,10 +6,14 @@ let TOKEN_KEY = "tagged-github-stars"
 
 class StateStore: ObservableObject {
     let keychain = Keychain(service: "com.github.token")
+    var tagModel: DBTagModel = DBTagModel()
     
     @Published var token = ""
     @Published var stars: [StarRepo] = []
     @Published var basicUserInfo: BasicUserInfo = BasicUserInfo(name: "", avatarUrl: "")
+    
+    @Published var tags: [TagModel] = []
+    
     
     func setToken(_ token: String) {
         self.token = token
@@ -44,16 +48,16 @@ class StateStore: ObservableObject {
             .responseJSON { response in
                 if let result = response.value {
                     let user = result as! NSDictionary
-                    print("=======", user)
-                    self.basicUserInfo = BasicUserInfo(name: user["name"]! as! String, avatarUrl: user["avatar_url"]! as! String)
+                    let userName = user["name"]! as! String
+                    self.basicUserInfo = BasicUserInfo(name: userName, avatarUrl: user["avatar_url"]! as! String)
                     
-                    self.loadStars(token)
+                    self.loadStars(token, userName: userName)
                 }
             }
     }
     
-    func loadStars(_ token: String) {
-        AF.request("https://api.github.com/users/\(basicUserInfo.name)/starred", headers: buildAuthHeaders(token))
+    func loadStars(_ token: String, userName: String) {
+        AF.request("https://api.github.com/users/\(userName)/starred", headers: buildAuthHeaders(token))
             .responseJSON { response in
                 if let links = response.response?.allHeaderFields["Link"] as? String {
                     print("=======link====")
@@ -63,8 +67,6 @@ class StateStore: ObservableObject {
                 
                 if let result = response.value {
                     let stars = result as! NSArray
-                    print(stars[0])
-                    print("==========")
                     stars.forEach { item in
                         let obj = item as! NSDictionary
                         let fullName = obj["full_name"]! as! String
@@ -78,5 +80,19 @@ class StateStore: ObservableObject {
                     }
                 }
             }
+    }
+    
+    func getTags(_ repoName: String) -> [TagModel] {
+        return tagModel.getTags(repoName)
+    }
+    
+    func setTags(_ tags:  [TagModel]){
+        self.tags = tags
+    }
+    
+    func addTag(_ tag: String, repo: String) {
+        tagModel.insertRecord(tag: tag, repo: repo)
+        
+        self.setTags(self.getTags(repo))
     }
 }

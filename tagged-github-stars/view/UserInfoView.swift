@@ -8,7 +8,7 @@ struct LoginView: View {
     
     var body: some View {
         HStack {
-            TextField("Github Token:", text: self.$token)
+            TextField("Input Your Github Token", text: self.$token)
                 .cornerRadius(5)
             
             Button(action: {

@@ -1,18 +1,18 @@
 import SwiftUI
 
 struct StarRepoItemView: View {
-    let repository: StarRepo
+    let starRepo: StarRepo
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(repository.fullName)
+                Text(starRepo.fullName)
                     .bold()
             }
             
-            Text(repository.description)
+            Text(starRepo.description)
             HStack {
-                Text("☆ \(repository.stargazersCount)")
+                Text("☆ \(starRepo.stargazersCount)")
             }
             Divider()
         }
