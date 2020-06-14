@@ -1,7 +1,7 @@
 import SwiftUI
 
-class StarItem: Identifiable, Hashable {
-    static func == (lhs: StarItem, rhs: StarItem) -> Bool {
+class StarRepo: Identifiable, Hashable {
+    static func == (lhs: StarRepo, rhs: StarRepo) -> Bool {
         return lhs.url == rhs.url
     }
     
@@ -19,14 +19,5 @@ class StarItem: Identifiable, Hashable {
         self.url = url
         self.description = description
         self.stargazersCount = stargazersCount
-    }
-}
-
-class StateStore: ObservableObject {
-    @Published var userName = ""
-    @Published var stars: [StarItem] = []
-    
-    func addStarItem(_ item: StarItem) {
-        stars.append(item)
     }
 }

@@ -16,36 +16,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let store = StateStore()
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "token 7ca26f451deef1f54d492288390098b84bf0d0a3",
-        ]
-        
-        AF.request("https://api.github.com/users/dongyuwei/starred", headers: headers)
-            .responseJSON { response in
-                if let links = response.response?.allHeaderFields["Link"] as? String {
-                    print("=======link====")
-                    print(links)
-                    print("=======link====")
-                }
-                
-                if let result = response.value {
-                    let stars = result as! NSArray
-                    print(stars[0])
-                    print("==========")
-                    stars.forEach { item in
-                        let obj = item as! NSDictionary
-                        let fullName = obj["full_name"]! as! String
-                        let url = obj["html_url"]! as! String
-                        let description = obj.value(forKey: "description") as? String ?? ""
-                        let stargazersCount = obj["stargazers_count"]! as! Int
-                        
-                        store.addStarItem(StarItem(
-                            fullName, url: url,
-                            description: description, stargazersCount: stargazersCount))
-                    }
-                }
-            }
+        if (store.getStoredToken() != ""){
+            store.getUserInfo()
+        }
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.

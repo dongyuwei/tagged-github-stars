@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RepositoryView: View {
-    let repository: StarItem
+    let repository: StarRepo
     
     var body: some View {
         VStack(alignment: .leading) {

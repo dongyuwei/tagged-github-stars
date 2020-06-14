@@ -9,6 +9,24 @@
           "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
           "version": "5.2.1"
         }
+      },
+      {
+        "package": "SQLite.swift",
+        "repositoryURL": "https://github.com/stephencelis/SQLite.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "0a9893ec030501a3956bee572d6b4fdd3ae158a1",
+          "version": "0.12.2"
+        }
+      },
+      {
+        "package": "URLImage",
+        "repositoryURL": "https://github.com/dmytro-anokhin/url-image.git",
+        "state": {
+          "branch": null,
+          "revision": "a48feef3ef91f573a5f55779502e07adb19943b8",
+          "version": "0.9.15"
+        }
       }
     ]
   },

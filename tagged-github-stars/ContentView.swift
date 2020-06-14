@@ -7,7 +7,7 @@ struct ContentView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 if store.stars.count == 0 {
-                    Text("Loading stars...")
+                    UserInfoView()
                 } else {
                     List {
                         ForEach(store.stars) { starItem in
