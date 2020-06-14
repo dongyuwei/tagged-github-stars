@@ -22,10 +22,21 @@ struct StarRepoTagsView: View {
             List {
                 HStack(spacing: 20) {
                     ForEach(self.store.getTags(starRepo.fullName), id: \.self) { item in
-                        Text(item.tag)
+                        
+                        Button(action: {
+                            self.store.deleteTag(item.tag, repo: self.starRepo.fullName)
+                        }) {
+                            Text("\(item.tag)  X")
+                        }.onHover { inside in
+                            if inside {
+                                NSCursor.pointingHand.push()
+                            } else {
+                                NSCursor.pop()
+                            }
+                        }
                     }
                 }
             }
-        }
+        }.padding(10)
     }
 }

@@ -95,4 +95,10 @@ class StateStore: ObservableObject {
         
         self.setTags(self.getTags(repo))
     }
+    
+    func deleteTag(_ tag: String, repo: String) {
+        tagModel.deleteTag(tag: tag, repo: repo)
+        
+        self.setTags(self.getTags(repo))
+    }
 }

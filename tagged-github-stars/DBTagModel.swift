@@ -49,6 +49,18 @@ class DBTagModel {
         }
     }
     
+    func deleteTag(tag: String, repo: String) {
+        let tag = tagsTable.select(self.id, self.repo, self.tag)
+        .filter(self.repo == repo && self.tag == tag)
+        
+        do {
+            try database.run(tag.delete())
+        } catch {
+            print(error)
+        }
+        
+    }
+    
     func getTags(_ repoName: String) ->  [TagModel]{
         print("get tags")
         var tagsOfRepo = [TagModel]()
