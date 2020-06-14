@@ -2,6 +2,7 @@ import SwiftUI
 
 struct StarRepoTagsView: View {
     let starRepo: StarRepo
+    
     @State var tag: String = ""
     @EnvironmentObject var store: StateStore
     
@@ -20,7 +21,7 @@ struct StarRepoTagsView: View {
             Divider()
             List {
                 HStack(spacing: 20) {
-                    ForEach(self.store.tags, id: \.self) { item in
+                    ForEach(self.store.getTags(starRepo.fullName), id: \.self) { item in
                         Text(item.tag)
                     }
                 }
