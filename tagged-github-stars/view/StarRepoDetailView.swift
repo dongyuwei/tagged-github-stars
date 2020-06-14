@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct RepositoryView: View {
+struct StarRepoDetailView: View {
     let repository: StarRepo
     
     var body: some View {

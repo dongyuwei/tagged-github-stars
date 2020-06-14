@@ -29,15 +29,19 @@ struct BasicUserInfoView: View {
     
     var body: some View {
         HStack {
-            URLImage(URL(string: self.store.basicUserInfo.avatarUrl)!) { proxy in
-                proxy.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipped()
+            if self.store.basicUserInfo.avatarUrl == "" {
+                Text("Loading...")
+            } else {
+                URLImage(URL(string: self.store.basicUserInfo.avatarUrl)!) { proxy in
+                    proxy.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipped()
+                }
+                .frame(width: 100.0, height: 100.0)
+                .cornerRadius(50)
+                Text(self.store.basicUserInfo.name).bold()
             }
-            .frame(width: 100.0, height: 100.0)
-            .cornerRadius(50)
-            Text(self.store.basicUserInfo.name).bold()
         }
     }
 }
@@ -47,7 +51,7 @@ struct UserInfoView: View {
     
     var body: some View {
         VStack {
-            if self.store.token != "" && self.store.basicUserInfo.avatarUrl != "" {
+            if self.store.token != "" {
                 BasicUserInfoView()
             } else {
                 LoginView()

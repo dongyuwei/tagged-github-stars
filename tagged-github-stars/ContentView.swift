@@ -14,7 +14,7 @@ struct ContentView: View {
                         List {
                             ForEach(store.stars) { starItem in
                                 NavigationLink(destination: WebView(url: URL(string: starItem.url)!)) {
-                                    RepositoryView(repository: starItem)
+                                    StarRepoItemView(repository: starItem)
                                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             }
                         }.frame(minWidth: 300, maxWidth: 300)
