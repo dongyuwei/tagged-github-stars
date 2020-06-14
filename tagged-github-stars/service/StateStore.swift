@@ -1,13 +1,24 @@
 import Alamofire
+import KeychainAccess
 import SwiftUI
 
+let TOKEN_KEY = "tagged-github-stars"
+
 class StateStore: ObservableObject {
+    let keychain = Keychain(service: "com.github.token")
+    
     @Published var token = ""
     @Published var stars: [StarRepo] = []
     @Published var basicUserInfo: BasicUserInfo = BasicUserInfo(name: "", avatarUrl: "")
     
-    func setToken(_ token:String){
-        self.token = token;
+    func setToken(_ token: String) {
+        self.token = token
+        
+        do {
+            try keychain.set(token, key: TOKEN_KEY)
+        } catch {
+            print("failed to save token", error)
+        }
     }
     
     func addStarItem(_ item: StarRepo) {
@@ -15,8 +26,10 @@ class StateStore: ObservableObject {
     }
     
     func getStoredToken() -> String {
-        let userModel = UserModel()
-        return userModel.getLatestToken()
+        let value = try? keychain.getString(TOKEN_KEY)
+        let token = value ?? ""
+        self.token = token
+        return token
     }
     
     func buildAuthHeaders(_ token: String) -> HTTPHeaders {
@@ -26,19 +39,21 @@ class StateStore: ObservableObject {
         return headers
     }
     
-    func getUserInfo() {
-        AF.request("https://api.github.com/user", headers: buildAuthHeaders(self.token))
+    func getUserInfo(_ token: String) {
+        AF.request("https://api.github.com/user", headers: buildAuthHeaders(token))
             .responseJSON { response in
                 if let result = response.value {
                     let user = result as! NSDictionary
                     print("=======", user)
                     self.basicUserInfo = BasicUserInfo(name: user["name"]! as! String, avatarUrl: user["avatar_url"]! as! String)
+                    
+                    self.loadStars(token)
                 }
             }
     }
     
-    func loadStars() {
-        AF.request("https://api.github.com/users/dongyuwei/starred", headers: buildAuthHeaders(self.token))
+    func loadStars(_ token: String) {
+        AF.request("https://api.github.com/users/\(basicUserInfo.name)/starred", headers: buildAuthHeaders(token))
             .responseJSON { response in
                 if let links = response.response?.allHeaderFields["Link"] as? String {
                     print("=======link====")
@@ -58,8 +73,8 @@ class StateStore: ObservableObject {
                         let stargazersCount = obj["stargazers_count"]! as! Int
                         
                         self.addStarItem(StarRepo(
-                        fullName, url: url,
-                        description: description, stargazersCount: stargazersCount))
+                            fullName, url: url,
+                            description: description, stargazersCount: stargazersCount))
                     }
                 }
             }

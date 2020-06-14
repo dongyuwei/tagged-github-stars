@@ -16,8 +16,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let store = StateStore()
-        if (store.getStoredToken() != ""){
-            store.getUserInfo()
+        let token = store.getStoredToken()
+        if token != "" {
+            store.getUserInfo(token)
         }
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.

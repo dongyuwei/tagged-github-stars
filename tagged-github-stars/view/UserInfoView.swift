@@ -1,8 +1,6 @@
 import SwiftUI
 import URLImage
 
-let userModel = UserModel()
-
 struct LoginView: View {
     @State var name: String = ""
     @State var token: String = ""
@@ -14,10 +12,8 @@ struct LoginView: View {
                 .cornerRadius(5)
             
             Button(action: {
-                userModel.insertRecord(name: self.$name.wrappedValue, token: self.$token.wrappedValue)
                 self.store.setToken(self.token)
-                self.store.getUserInfo()
-                self.store.loadStars()
+                self.store.getUserInfo(self.token)
             }) {
                 Text("Login with Github personal token")
             }
@@ -28,18 +24,31 @@ struct LoginView: View {
     }
 }
 
+struct BasicUserInfoView: View {
+    @EnvironmentObject var store: StateStore
+    
+    var body: some View {
+        HStack {
+            URLImage(URL(string: self.store.basicUserInfo.avatarUrl)!) { proxy in
+                proxy.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipped()
+            }
+            .frame(width: 100.0, height: 100.0)
+            .cornerRadius(50)
+            Text(self.store.basicUserInfo.name).bold()
+        }
+    }
+}
+
 struct UserInfoView: View {
     @EnvironmentObject var store: StateStore
     
     var body: some View {
         VStack {
-            if self.store.basicUserInfo.name != "" {
-                HStack {
-                    URLImage(URL(string: self.store.basicUserInfo.avatarUrl)!, placeholder: { _ in
-                        Text(self.store.basicUserInfo.name)
-                    })
-                    Text(self.store.basicUserInfo.name)
-                }
+            if self.store.token != "" && self.store.basicUserInfo.avatarUrl != "" {
+                BasicUserInfoView()
             } else {
                 LoginView()
             }

@@ -94,7 +94,7 @@ struct BasicUserInfo: Hashable {
     let name: String
     let avatarUrl: String
     
-    init(name:String, avatarUrl: String){
+    init(name: String, avatarUrl: String) {
         self.name = name
         self.avatarUrl = avatarUrl
     }
