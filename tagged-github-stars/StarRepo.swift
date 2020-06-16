@@ -14,7 +14,7 @@ class StarRepo: Identifiable, Hashable {
     var description: String
     var stargazersCount: Int
     
-    init(_ fullName: String, url: String, description: String, stargazersCount: Int) {
+    init(fullName: String, url: String, description: String, stargazersCount: Int) {
         self.fullName = fullName
         self.url = url
         self.description = description

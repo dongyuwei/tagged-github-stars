@@ -65,14 +65,13 @@ class DBTagModel {
         
     }
     
-    func getTags(_ repoName: String) ->  [TagModel]{
+    func getTagModels(_ repoName: String) ->  [TagModel]{
         print("get tags")
         var tagsOfRepo = [TagModel]()
         do {
             let tags = try database.prepare(tagsTable.select(self.id, self.repo, self.tag).filter(self.repo == repoName).order(self.id.asc))
             
             for tag in tags {
-                print("Tag ID: \(tag[self.id]), repo: \(tag[self.repo]), tag: \(tag[self.tag])")
                 tagsOfRepo.append(TagModel(id: tag[self.id], repo: tag[self.repo], tag: tag[self.tag]))
             }
             
@@ -82,6 +81,24 @@ class DBTagModel {
         
         return tagsOfRepo
     }
+    
+    func getTagModelsByTag(_ tag: String) ->  [TagModel]{
+        print("get tags")
+        var tagsOfRepo = [TagModel]()
+        do {
+            let tags = try database.prepare(tagsTable.select(self.id, self.repo, self.tag).filter(self.tag == tag).order(self.id.asc))
+            
+            for tag in tags {
+                tagsOfRepo.append(TagModel(id: tag[self.id], repo: tag[self.repo], tag: tag[self.tag]))
+            }
+            
+        } catch {
+            print(error)
+        }
+        
+        return tagsOfRepo
+    }
+
 }
 
 struct TagModel: Identifiable, Hashable {

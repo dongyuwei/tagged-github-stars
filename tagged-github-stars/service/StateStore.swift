@@ -7,6 +7,7 @@ let TOKEN_KEY = "tagged-github-stars"
 class StateStore: ObservableObject {
     let keychain = Keychain(service: "com.github.token")
     var tagModel: DBTagModel = DBTagModel()
+    var repoModel: DBRepoModel = DBRepoModel()
     
     var allTopics: [String: [TopicModel]] = [:];
     
@@ -99,6 +100,8 @@ class StateStore: ObservableObject {
                 
                 if let result = response.value {
                     let stars = result as! NSArray
+                    self.stars = []
+                    
                     stars.forEach { item in
                         let obj = item as! NSDictionary
                         let fullName = obj["full_name"]! as! String
@@ -107,15 +110,19 @@ class StateStore: ObservableObject {
                         let stargazersCount = obj["stargazers_count"]! as! Int
                         
                         self.addStarItem(StarRepo(
-                            fullName, url: url,
-                            description: description, stargazersCount: stargazersCount))
+                            fullName: fullName,
+                            url: url,
+                            description: description,
+                            stargazersCount: stargazersCount))
                     }
+                    
+                    self.repoModel.insertRepos(self.stars)
                 }
             }
     }
     
     func getTags(_ repoName: String) -> [TagModel] {
-        return tagModel.getTags(repoName)
+        return tagModel.getTagModels(repoName)
     }
     
     func setTags(_ tags:  [TagModel]){
@@ -134,5 +141,27 @@ class StateStore: ObservableObject {
         tagModel.deleteTag(tag: tag, repo: repo)
         
         self.setTags(self.getTags(repo))
+    }
+    
+    func filterStars(filterText: String) {
+        let tag = filterText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if(tag == "") {
+            self.loadStars(self.token, userName: self.basicUserInfo.name)
+            return
+        }
+        
+        let tagModels = self.tagModel.getTagModelsByTag(filterText)
+        let repos: [StarRepo] = self.repoModel.getReposByTagModels(tagModels)
+        var added = Set<StarRepo>()
+        var starRepos = [StarRepo]()
+        for repo in repos {
+            if(!added.contains(repo)) {
+                added.insert(repo)
+                starRepos.append(repo)
+            }
+        }
+        self.stars = starRepos
+        
+        print("----filterStars ", filterText, tagModels, self.stars)
     }
 }

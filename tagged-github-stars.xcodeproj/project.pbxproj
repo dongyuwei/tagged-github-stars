@@ -12,7 +12,7 @@
 		382D55C7248531AC001B6ED2 /* StarRepoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55C6248531AC001B6ED2 /* StarRepoItemView.swift */; };
 		382D55D0248546DC001B6ED2 /* StarRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55CF248546DC001B6ED2 /* StarRepo.swift */; };
 		38D8267124961D3D00C0C5C0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 38D8267024961D3D00C0C5C0 /* SQLite */; };
-		38D8267324961DA500C0C5C0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8267224961DA500C0C5C0 /* UserModel.swift */; };
+		38D8267324961DA500C0C5C0 /* DBUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8267224961DA500C0C5C0 /* DBUserModel.swift */; };
 		38D826782496314B00C0C5C0 /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D826772496314B00C0C5C0 /* StateStore.swift */; };
 		38D8267A24963EBF00C0C5C0 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8267924963EBF00C0C5C0 /* UserInfoView.swift */; };
 		38D8267D2496408600C0C5C0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 38D8267C2496408600C0C5C0 /* URLImage */; };
@@ -21,6 +21,8 @@
 		38D8268724966E0D00C0C5C0 /* StarRepoTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268624966E0D00C0C5C0 /* StarRepoTagsView.swift */; };
 		38D82689249670DA00C0C5C0 /* DBTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82688249670D900C0C5C0 /* DBTagModel.swift */; };
 		38D8268B24988F9600C0C5C0 /* StarRepoTopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268A24988F9600C0C5C0 /* StarRepoTopicsView.swift */; };
+		38D8268D249912A000C0C5C0 /* StarsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268C249912A000C0C5C0 /* StarsFilterView.swift */; };
+		38D8268F249A5B2300C0C5C0 /* DBRepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */; };
 		38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992A247F43070031FBB9 /* AppDelegate.swift */; };
 		38FF992D247F43070031FBB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992C247F43070031FBB9 /* ContentView.swift */; };
 		38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */; };
@@ -52,13 +54,15 @@
 		382D55C324852E1E001B6ED2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		382D55C6248531AC001B6ED2 /* StarRepoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoItemView.swift; sourceTree = "<group>"; };
 		382D55CF248546DC001B6ED2 /* StarRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepo.swift; sourceTree = "<group>"; };
-		38D8267224961DA500C0C5C0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		38D8267224961DA500C0C5C0 /* DBUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserModel.swift; sourceTree = "<group>"; };
 		38D826772496314B00C0C5C0 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
 		38D8267924963EBF00C0C5C0 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		38D8268424966DAD00C0C5C0 /* StarRepoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoDetailView.swift; sourceTree = "<group>"; };
 		38D8268624966E0D00C0C5C0 /* StarRepoTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoTagsView.swift; sourceTree = "<group>"; };
 		38D82688249670D900C0C5C0 /* DBTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTagModel.swift; sourceTree = "<group>"; };
 		38D8268A24988F9600C0C5C0 /* StarRepoTopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoTopicsView.swift; sourceTree = "<group>"; };
+		38D8268C249912A000C0C5C0 /* StarsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsFilterView.swift; sourceTree = "<group>"; };
+		38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepoModel.swift; sourceTree = "<group>"; };
 		38FF9927247F43070031FBB9 /* tagged-github-stars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tagged-github-stars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FF992A247F43070031FBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FF992C247F43070031FBB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				38D8268424966DAD00C0C5C0 /* StarRepoDetailView.swift */,
 				38D8268624966E0D00C0C5C0 /* StarRepoTagsView.swift */,
 				38D8268A24988F9600C0C5C0 /* StarRepoTopicsView.swift */,
+				38D8268C249912A000C0C5C0 /* StarsFilterView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -122,8 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				382D55CF248546DC001B6ED2 /* StarRepo.swift */,
-				38D8267224961DA500C0C5C0 /* UserModel.swift */,
+				38D8267224961DA500C0C5C0 /* DBUserModel.swift */,
 				38D82688249670D900C0C5C0 /* DBTagModel.swift */,
+				38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -345,9 +351,11 @@
 			files = (
 				38D8268B24988F9600C0C5C0 /* StarRepoTopicsView.swift in Sources */,
 				38D826782496314B00C0C5C0 /* StateStore.swift in Sources */,
+				38D8268D249912A000C0C5C0 /* StarsFilterView.swift in Sources */,
 				38FF992D247F43070031FBB9 /* ContentView.swift in Sources */,
-				38D8267324961DA500C0C5C0 /* UserModel.swift in Sources */,
+				38D8267324961DA500C0C5C0 /* DBUserModel.swift in Sources */,
 				382D55C424852E1E001B6ED2 /* WebView.swift in Sources */,
+				38D8268F249A5B2300C0C5C0 /* DBRepoModel.swift in Sources */,
 				38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */,
 				382D55D0248546DC001B6ED2 /* StarRepo.swift in Sources */,
 				38D82689249670DA00C0C5C0 /* DBTagModel.swift in Sources */,

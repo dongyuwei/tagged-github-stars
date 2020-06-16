@@ -11,6 +11,7 @@ struct ContentView: View {
                 } else {
                     VStack {
                         BasicUserInfoView()
+                        StarsFilterView()
                         List {
                             ForEach(store.stars) { starRepo in
                                 NavigationLink(destination: StarRepoDetailView(starRepo: starRepo)) {

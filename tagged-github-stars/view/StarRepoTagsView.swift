@@ -10,8 +10,8 @@ struct StarRepoTagsView: View {
         VStack(alignment: .leading) {
             HStack {
                 TextField("add new tags, separated with comma or space", text: self.$tag, onCommit: {
-                    self.store.addTag(self.tag, repo: self.starRepo.fullName)
-                    self.tag = ""
+                        self.store.addTag(self.tag, repo: self.starRepo.fullName)
+                        self.tag = ""
                 }).textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
@@ -25,7 +25,7 @@ struct StarRepoTagsView: View {
             Text("Tags:")
             List {
                 HStack(spacing: 20) {
-                    ForEach(self.store.getTags(starRepo.fullName), id: \.self) { item in
+                    ForEach(self.store.getTags(self.starRepo.fullName), id: \.self) { item in
                         
                         Button(action: {
                             self.store.deleteTag(item.tag, repo: self.starRepo.fullName)
