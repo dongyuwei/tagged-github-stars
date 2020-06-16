@@ -9,7 +9,7 @@ struct LoginView: View {
     var body: some View {
         HStack {
             TextField("Input Your Github Token", text: self.$token)
-                .cornerRadius(5)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             
             Button(action: {
                 self.store.setToken(self.token)

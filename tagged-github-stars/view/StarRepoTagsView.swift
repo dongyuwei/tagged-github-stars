@@ -9,8 +9,10 @@ struct StarRepoTagsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                TextField("new tag", text: self.$tag)
-                    .cornerRadius(5)
+                TextField("add new tags, separated with comma or space", text: self.$tag, onCommit: {
+                    self.store.addTag(self.tag, repo: self.starRepo.fullName)
+                    self.tag = ""
+                }).textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
                     self.store.addTag(self.tag, repo: self.starRepo.fullName)

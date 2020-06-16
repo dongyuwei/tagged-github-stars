@@ -41,8 +41,11 @@ class DBTagModel {
     func insertTags(_ tags: [String], repo: String) {
         do {
             try database.transaction {
-                for (_, tag) in tags.enumerated() {
-                    try database.run(tagsTable.insert(self.repo <- repo, self.tag <- tag))
+                for (_, item) in tags.enumerated() {
+                    let tag = item.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if(tag != "") {
+                        try database.run(tagsTable.insert(or: OnConflict.ignore, self.repo <- repo, self.tag <- tag))
+                    }
                 }
             }
         } catch {
@@ -66,7 +69,7 @@ class DBTagModel {
         print("get tags")
         var tagsOfRepo = [TagModel]()
         do {
-            let tags = try database.prepare(tagsTable.select(self.id, self.repo, self.tag).filter(self.repo == repoName))
+            let tags = try database.prepare(tagsTable.select(self.id, self.repo, self.tag).filter(self.repo == repoName).order(self.id.asc))
             
             for tag in tags {
                 print("Tag ID: \(tag[self.id]), repo: \(tag[self.repo]), tag: \(tag[self.tag])")
