@@ -38,12 +38,13 @@ class DBTagModel {
         }
     }
     
-    func insertRecord(tag: String, repo: String) {
-        let insertRecord = tagsTable.insert(self.repo <- repo, self.tag <- tag)
-        
+    func insertTags(_ tags: [String], repo: String) {
         do {
-            try database.run(insertRecord)
-            print("record added")
+            try database.transaction {
+                for (_, tag) in tags.enumerated() {
+                    try database.run(tagsTable.insert(self.repo <- repo, self.tag <- tag))
+                }
+            }
         } catch {
             print(error)
         }

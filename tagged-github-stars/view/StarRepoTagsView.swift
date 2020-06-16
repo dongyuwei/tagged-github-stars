@@ -14,6 +14,7 @@ struct StarRepoTagsView: View {
                 
                 Button(action: {
                     self.store.addTag(self.tag, repo: self.starRepo.fullName)
+                    self.tag = ""
                 }) {
                     Text("Add New Tag")
                 }

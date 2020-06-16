@@ -17,12 +17,11 @@ struct ContentView: View {
                                     StarRepoItemView(starRepo: starRepo)
                                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             }
-                        }.frame(minWidth: 300, maxWidth: 300)
+                        }.frame(width: 300)
                     }
                 }
             }.padding(10)
-                .frame(maxHeight: .infinity, alignment: .topLeading)
-        }
+        }.frame(idealWidth: 1200, maxWidth: .infinity)
     }
 }
 
