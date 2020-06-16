@@ -19,6 +19,7 @@ struct StarRepoTagsView: View {
                 }
             }
             Divider()
+            Text("Tags:")
             List {
                 HStack(spacing: 20) {
                     ForEach(self.store.getTags(starRepo.fullName), id: \.self) { item in

@@ -13,6 +13,7 @@ class StateStore: ObservableObject {
     @Published var basicUserInfo: BasicUserInfo = BasicUserInfo(name: "", avatarUrl: "")
     
     @Published var tags: [TagModel] = []
+    @Published var topics: [TopicModel] = []
     
     
     func setToken(_ token: String) {
@@ -36,15 +37,16 @@ class StateStore: ObservableObject {
         return token
     }
     
-    func buildAuthHeaders(_ token: String) -> HTTPHeaders {
+    func buildHeaders(_ token: String) -> HTTPHeaders {
         let headers: HTTPHeaders = [
             "Authorization": "token \(token)",
+            "Accept": "application/vnd.github.mercy-preview+json",
         ]
         return headers
     }
     
     func getUserInfo(_ token: String) {
-        AF.request("https://api.github.com/user", headers: buildAuthHeaders(token))
+        AF.request("https://api.github.com/user", headers: buildHeaders(token))
             .responseJSON { response in
                 if let result = response.value {
                     let user = result as! NSDictionary
@@ -56,8 +58,28 @@ class StateStore: ObservableObject {
             }
     }
     
+    func getTopicsOfRepo(_ repoFullName: String) {
+        AF.request("https://api.github.com/repos/\(repoFullName)/topics", headers: buildHeaders(token))
+        .responseJSON { response in
+            if let result = response.value {
+                let data = result as! NSDictionary
+                let topics = data["names"] as! NSArray
+                print("###\(repoFullName)  topics", topics)
+                var list: [TopicModel] = []
+                for topic in topics {
+                    list.append(TopicModel(id: UUID(), name: topic as! String))
+                }
+                self.topics = list
+            }
+        }
+    }
+    
+    func getTopicsOfCurrentRepo() -> [TopicModel] {
+        return self.topics
+    }
+    
     func loadStars(_ token: String, userName: String) {
-        AF.request("https://api.github.com/users/\(userName)/starred", headers: buildAuthHeaders(token))
+        AF.request("https://api.github.com/users/\(userName)/starred", headers: buildHeaders(token))
             .responseJSON { response in
                 if let links = response.response?.allHeaderFields["Link"] as? String {
                     print("=======link====")

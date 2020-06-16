@@ -21,3 +21,17 @@ class StarRepo: Identifiable, Hashable {
         self.stargazersCount = stargazersCount
     }
 }
+
+
+struct TopicModel: Identifiable, Hashable {
+    var id: UUID
+    var name: String
+    
+    static func == (lhs: TopicModel, rhs: TopicModel) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+}
