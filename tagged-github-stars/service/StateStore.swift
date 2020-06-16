@@ -8,12 +8,15 @@ class StateStore: ObservableObject {
     let keychain = Keychain(service: "com.github.token")
     var tagModel: DBTagModel = DBTagModel()
     
+    var allTopics: [String: [TopicModel]] = [:];
+    
     @Published var token = ""
     @Published var stars: [StarRepo] = []
     @Published var basicUserInfo: BasicUserInfo = BasicUserInfo(name: "", avatarUrl: "")
     
     @Published var tags: [TagModel] = []
     @Published var topics: [TopicModel] = []
+
     
     
     func setToken(_ token: String) {
@@ -59,6 +62,12 @@ class StateStore: ObservableObject {
     }
     
     func getTopicsOfRepo(_ repoFullName: String) {
+        let cachedTopics = self.allTopics[repoFullName]
+        if(cachedTopics != nil) {
+            self.topics = cachedTopics!
+            return;
+        }
+        
         AF.request("https://api.github.com/repos/\(repoFullName)/topics", headers: buildHeaders(token))
         .responseJSON { response in
             if let result = response.value {
@@ -70,6 +79,7 @@ class StateStore: ObservableObject {
                     list.append(TopicModel(id: UUID(), name: topic as! String))
                 }
                 self.topics = list
+                self.allTopics[repoFullName] = list
             }
         }
     }

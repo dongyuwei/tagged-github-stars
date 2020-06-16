@@ -17,5 +17,6 @@ struct StarRepoTopicsView: View {
                 }
             }
         }.padding(10)
+        .frame(maxHeight: 100.0)
     }
 }

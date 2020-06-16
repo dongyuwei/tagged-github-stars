@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                if store.stars.count == 0 {
+                if store.token == "" {
                     UserInfoView()
                 } else {
                     VStack {
