@@ -23,6 +23,7 @@
 		38D8268B24988F9600C0C5C0 /* StarRepoTopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268A24988F9600C0C5C0 /* StarRepoTopicsView.swift */; };
 		38D8268D249912A000C0C5C0 /* StarsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268C249912A000C0C5C0 /* StarsFilterView.swift */; };
 		38D8268F249A5B2300C0C5C0 /* DBRepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */; };
+		38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82690249B284A00C0C5C0 /* LoginView.swift */; };
 		38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992A247F43070031FBB9 /* AppDelegate.swift */; };
 		38FF992D247F43070031FBB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992C247F43070031FBB9 /* ContentView.swift */; };
 		38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */; };
@@ -63,6 +64,7 @@
 		38D8268A24988F9600C0C5C0 /* StarRepoTopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoTopicsView.swift; sourceTree = "<group>"; };
 		38D8268C249912A000C0C5C0 /* StarsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsFilterView.swift; sourceTree = "<group>"; };
 		38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepoModel.swift; sourceTree = "<group>"; };
+		38D82690249B284A00C0C5C0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		38FF9927247F43070031FBB9 /* tagged-github-stars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tagged-github-stars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FF992A247F43070031FBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FF992C247F43070031FBB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				38D8268624966E0D00C0C5C0 /* StarRepoTagsView.swift */,
 				38D8268A24988F9600C0C5C0 /* StarRepoTopicsView.swift */,
 				38D8268C249912A000C0C5C0 /* StarsFilterView.swift */,
+				38D82690249B284A00C0C5C0 /* LoginView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				38D8267A24963EBF00C0C5C0 /* UserInfoView.swift in Sources */,
 				38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */,
 				38D8268524966DAD00C0C5C0 /* StarRepoDetailView.swift in Sources */,
+				38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */,
 				38D8268724966E0D00C0C5C0 /* StarRepoTagsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

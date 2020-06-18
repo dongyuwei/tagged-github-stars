@@ -4,13 +4,13 @@ struct ContentView: View {
     @EnvironmentObject var store: StateStore
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                if store.token == "" {
-                    UserInfoView()
-                } else {
+        VStack(alignment: .leading) {
+            if store.token == "" {
+                LoginView()
+            } else {
+                NavigationView {
                     VStack {
-                        BasicUserInfoView()
+                        UserInfoView()
                         StarsFilterView()
                         List {
                             ForEach(store.stars) { starRepo in
@@ -19,10 +19,10 @@ struct ContentView: View {
                                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             }
                         }.frame(width: 300)
-                    }
-                }
-            }.padding(10)
-        }.frame(idealWidth: 1200, maxWidth: .infinity)
+                    }.padding(10)
+                }.frame(idealWidth: 1200, maxWidth: .infinity)
+            }
+        }
     }
 }
 

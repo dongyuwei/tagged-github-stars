@@ -41,6 +41,15 @@ class StateStore: ObservableObject {
         return token
     }
     
+    func clearCurrentToken() {
+        do {
+            try keychain.remove(TOKEN_KEY)
+            self.token = ""
+        } catch let error {
+            print("error: \(error)")
+        }
+    }
+    
     func buildHeaders(_ token: String) -> HTTPHeaders {
         let headers: HTTPHeaders = [
             "Authorization": "token \(token)",

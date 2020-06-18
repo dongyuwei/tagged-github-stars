@@ -7,7 +7,7 @@ struct StarsFilterView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                TextField("filter stars by tag", text: self.$filterText, onCommit: {
+                TextField("filter my stars", text: self.$filterText, onCommit: {
                     self.store.filterStars(filterText: self.filterText)
                     self.filterText = ""
                 }).textFieldStyle(RoundedBorderTextFieldStyle())
