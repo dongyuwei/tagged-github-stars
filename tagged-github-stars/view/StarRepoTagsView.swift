@@ -25,7 +25,7 @@ struct StarRepoTagsView: View {
             Text("Tags:")
             List {
                 HStack(spacing: 20) {
-                    ForEach(self.store.getTags(self.starRepo.fullName), id: \.self) { item in
+                    ForEach(self.store.tags, id: \.self) { item in
                         
                         Button(action: {
                             self.store.deleteTag(item.tag, repo: self.starRepo.fullName)

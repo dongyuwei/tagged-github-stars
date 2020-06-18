@@ -12,6 +12,7 @@ struct StarRepoDetailView: View {
             WebView(url: URL(string: starRepo.url)!)
         }.onAppear(perform: {
             self.store.getTopicsOfRepo(self.starRepo.fullName)
+            self.store.getTags(self.starRepo.fullName)
         })
     }
 }

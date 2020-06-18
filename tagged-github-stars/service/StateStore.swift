@@ -122,7 +122,9 @@ class StateStore: ObservableObject {
     }
     
     func getTags(_ repoName: String) -> [TagModel] {
-        return tagModel.getTagModels(repoName)
+        let tagModels = tagModel.getTagModels(repoName)
+        self.setTags(tagModels)
+        return tagModels
     }
     
     func setTags(_ tags:  [TagModel]){

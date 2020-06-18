@@ -14,7 +14,7 @@ struct ContentView: View {
                         StarsFilterView()
                         List {
                             ForEach(store.stars) { starRepo in
-                                NavigationLink(destination: StarRepoDetailView(starRepo: starRepo)) {
+                                NavigationLink(destination: StarRepoDetailView(starRepo: starRepo).environmentObject(self.store)) {
                                     StarRepoItemView(starRepo: starRepo)
                                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                             }
