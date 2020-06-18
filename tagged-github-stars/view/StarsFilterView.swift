@@ -7,13 +7,27 @@ struct StarsFilterView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                TextField("filter stars by tag/topic", text: self.$filterText, onCommit: {
+                TextField("filter stars by tag", text: self.$filterText, onCommit: {
                     self.store.filterStars(filterText: self.filterText)
                     self.filterText = ""
                 }).textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button(action: {
+                    self.store.filterStars(filterText: self.filterText)
+                    self.filterText = ""
+                }) {
+                    Text("Search")
+                }
+                
+                Button(action: {
+                    self.store.reloadStars()
+                    self.filterText = ""
+                }) {
+                    Text("Reset")
+                }
             }
             Divider()
         }.padding(10)
-         .frame(width: 280.0)
+         .frame(width: 290.0)
     }
 }

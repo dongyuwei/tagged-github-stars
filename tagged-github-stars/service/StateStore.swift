@@ -148,11 +148,9 @@ class StateStore: ObservableObject {
     func filterStars(filterText: String) {
         let tag = filterText.trimmingCharacters(in: .whitespacesAndNewlines)
         if(tag == "") {
-            self.loadStars(self.token, userName: self.basicUserInfo.name)
             return
         }
-        
-        let tagModels = self.tagModel.getTagModelsByTag(filterText)
+        let tagModels = self.tagModel.getTagModelsByTag(tag)
         let repos: [StarRepo] = self.repoModel.getReposByTagModels(tagModels)
         var added = Set<StarRepo>()
         var starRepos = [StarRepo]()
@@ -165,5 +163,9 @@ class StateStore: ObservableObject {
         self.stars = starRepos
         
         print("----filterStars ", filterText, tagModels, self.stars)
+    }
+    
+    func reloadStars() {
+        self.loadStars(self.token, userName: self.basicUserInfo.name)
     }
 }
