@@ -42,7 +42,7 @@ class DBTagModel {
         do {
             try database.transaction {
                 for (_, tag) in tags.enumerated() {
-                    if(tag != "") {
+                    if tag != "" {
                         print("insert tag: ", tag, repo)
                         try database.run(tagsTable.insert(or: OnConflict.ignore, self.repo <- repo, self.tag <- tag))
                     }
@@ -54,21 +54,20 @@ class DBTagModel {
     }
     
     func deleteTag(tag: String, repo: String) {
-        let tag = tagsTable.select(self.id, self.repo, self.tag)
-        .filter(self.repo == repo && self.tag == tag)
+        let tag = tagsTable.select(id, self.repo, self.tag)
+            .filter(self.repo == repo && self.tag == tag)
         
         do {
             try database.run(tag.delete())
         } catch {
             print(error)
         }
-        
     }
     
-    func getTagModels(_ repoName: String) ->  [TagModel]{
+    func getTagModels(_ repoName: String) -> [TagModel] {
         var tagsOfRepo = [TagModel]()
         do {
-            let tags = try database.prepare(tagsTable.select(self.id, self.repo, self.tag).filter(self.repo == repoName).order(self.id.asc))
+            let tags = try database.prepare(tagsTable.select(id, repo, tag).filter(repo == repoName).order(id.asc))
             
             for tag in tags {
                 tagsOfRepo.append(TagModel(id: tag[self.id], repo: tag[self.repo], tag: tag[self.tag]))
@@ -81,11 +80,11 @@ class DBTagModel {
         return tagsOfRepo
     }
     
-    func getTagModelsByTag(_ tag: String) ->  [TagModel]{
+    func getTagModelsByTag(_ tag: String) -> [TagModel] {
         print("get tags")
         var tagsOfRepo = [TagModel]()
         do {
-            let tags = try database.prepare(tagsTable.select(self.id, self.repo, self.tag).filter(self.tag == tag).order(self.id.asc))
+            let tags = try database.prepare(tagsTable.select(id, repo, self.tag).filter(self.tag == tag).order(id.asc))
             
             for tag in tags {
                 tagsOfRepo.append(TagModel(id: tag[self.id], repo: tag[self.repo], tag: tag[self.tag]))
@@ -97,7 +96,6 @@ class DBTagModel {
         
         return tagsOfRepo
     }
-
 }
 
 struct TagModel: Identifiable, Hashable {

@@ -10,8 +10,8 @@ struct StarRepoTagsView: View {
         VStack(alignment: .leading) {
             HStack {
                 TextField("batch add new tags, separated with space", text: self.$tag, onCommit: {
-                        self.store.addTag(self.tag, repo: self.starRepo.fullName)
-                        self.tag = ""
+                    self.store.addTag(self.tag, repo: self.starRepo.fullName)
+                    self.tag = ""
                 }).textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
@@ -42,6 +42,6 @@ struct StarRepoTagsView: View {
                 }
             }
         }.padding(10)
-        .frame(height: 200.0)
+            .frame(height: 200.0)
     }
 }

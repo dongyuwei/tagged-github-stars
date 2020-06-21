@@ -9,7 +9,7 @@ class StateStore: ObservableObject {
     var tagModel: DBTagModel = DBTagModel()
     var repoModel: DBRepoModel = DBRepoModel()
     
-    var allTopics: [String: [TopicModel]] = [:];
+    var allTopics: [String: [TopicModel]] = [:]
     
     @Published var token = ""
     @Published var stars: [StarRepo] = []
@@ -18,8 +18,6 @@ class StateStore: ObservableObject {
     @Published var tags: [TagModel] = []
     @Published var topics: [TopicModel] = []
     @Published var pagination: [String: String] = [:]
-
-    
     
     func setToken(_ token: String) {
         self.token = token
@@ -45,8 +43,8 @@ class StateStore: ObservableObject {
     func clearCurrentToken() {
         do {
             try keychain.remove(TOKEN_KEY)
-            self.token = ""
-        } catch let error {
+            token = ""
+        } catch {
             print("error: \(error)")
         }
     }
@@ -74,36 +72,36 @@ class StateStore: ObservableObject {
     }
     
     func getTopicsOfRepo(_ repoFullName: String) {
-        let cachedTopics = self.allTopics[repoFullName]
-        if(cachedTopics != nil) {
-            self.topics = cachedTopics!
-            return;
+        let cachedTopics = allTopics[repoFullName]
+        if cachedTopics != nil {
+            topics = cachedTopics!
+            return
         }
         
         AF.request("https://api.github.com/repos/\(repoFullName)/topics", headers: buildHeaders(token))
-        .responseJSON { response in
-            if let result = response.value {
-                let data = result as! NSDictionary
-                let topics = data["names"] as! NSArray
-                print("###\(repoFullName)  topics", topics)
-                var list: [TopicModel] = []
-                for topic in topics {
-                    list.append(TopicModel(id: UUID(), name: topic as! String))
+            .responseJSON { response in
+                if let result = response.value {
+                    let data = result as! NSDictionary
+                    let topics = data["names"] as! NSArray
+                    print("###\(repoFullName)  topics", topics)
+                    var list: [TopicModel] = []
+                    for topic in topics {
+                        list.append(TopicModel(id: UUID(), name: topic as! String))
+                    }
+                    self.topics = list
+                    self.allTopics[repoFullName] = list
                 }
-                self.topics = list
-                self.allTopics[repoFullName] = list
             }
-        }
     }
     
     func getTopicsOfCurrentRepo() -> [TopicModel] {
-        return self.topics
+        return topics
     }
     
-    func parseLinks(_ links: String) -> [String: String]{
+    func parseLinks(_ links: String) -> [String: String] {
         var dictionary: [String: String] = [:]
         links.components(separatedBy: ",").forEach({
-            let components = $0.components(separatedBy:"; ")
+            let components = $0.components(separatedBy: "; ")
             dictionary[components[1].replacingOccurrences(of: "rel=", with: "").replacingOccurrences(of: "\"", with: "")] = components[0].replacingOccurrences(of: "<", with: "")
                 .replacingOccurrences(of: ">", with: "")
                 .replacingOccurrences(of: " ", with: "")
@@ -112,7 +110,7 @@ class StateStore: ObservableObject {
     }
     
     func loadStars(_ token: String, userName: String, url: String? = nil) {
-        let url2 = url ?? "https://api.github.com/users/\(userName)/starred?per_page=100";
+        let url2 = url ?? "https://api.github.com/users/\(userName)/starred?per_page=100"
         AF.request(url2, headers: buildHeaders(token))
             .responseJSON { response in
                 print("===response.result", response.result)
@@ -145,51 +143,51 @@ class StateStore: ObservableObject {
     
     func getTags(_ repoName: String) -> [TagModel] {
         let tagModels = tagModel.getTagModels(repoName)
-        self.setTags(tagModels)
+        setTags(tagModels)
         return tagModels
     }
     
-    func setTags(_ tags:  [TagModel]){
+    func setTags(_ tags: [TagModel]) {
         self.tags = tags
     }
     
     func addTag(_ tagInput: String, repo: String) {
         let tags = tagInput.components(separatedBy: " ").map {
-          $0.trimmingCharacters(in: CharacterSet.whitespaces)
+            $0.trimmingCharacters(in: CharacterSet.whitespaces)
         }
         print("tagInput:", tagInput, repo, tags)
         tagModel.insertTags(tags, repo: repo)
         
-        self.setTags(self.getTags(repo))
+        setTags(getTags(repo))
     }
     
     func deleteTag(_ tag: String, repo: String) {
         tagModel.deleteTag(tag: tag, repo: repo)
         
-        self.setTags(self.getTags(repo))
+        setTags(getTags(repo))
     }
     
     func filterStars(filterText: String) {
         let tag = filterText.trimmingCharacters(in: .whitespacesAndNewlines)
-        if(tag == "") {
+        if tag == "" {
             return
         }
-        let tagModels = self.tagModel.getTagModelsByTag(tag)
-        let repos: [StarRepo] = self.repoModel.getReposByTagModels(tagModels)
+        let tagModels = tagModel.getTagModelsByTag(tag)
+        let repos: [StarRepo] = repoModel.getReposByTagModels(tagModels)
         var added = Set<StarRepo>()
         var starRepos = [StarRepo]()
         for repo in repos {
-            if(!added.contains(repo)) {
+            if !added.contains(repo) {
                 added.insert(repo)
                 starRepos.append(repo)
             }
         }
-        self.stars = starRepos
+        stars = starRepos
         
-        print("----filterStars ", filterText, tagModels, self.stars)
+        print("----filterStars ", filterText, tagModels, stars)
     }
     
     func reloadStars() {
-        self.loadStars(self.token, userName: self.basicUserInfo.name)
+        loadStars(token, userName: basicUserInfo.name)
     }
 }

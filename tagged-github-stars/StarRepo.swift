@@ -22,7 +22,6 @@ class StarRepo: Identifiable, Hashable {
     }
 }
 
-
 struct TopicModel: Identifiable, Hashable {
     var id: UUID
     var name: String

@@ -10,7 +10,6 @@ class DBRepoModel {
     let description = Expression<String>("description")
     let stargazersCount = Expression<Int>("stargazersCount")
     
-    
     init() {
         do {
             let documentDirectory = try FileManager.default.url(for: .applicationSupportDirectory, in: .allDomainsMask, appropriateFor: nil, create: true)
@@ -47,9 +46,10 @@ class DBRepoModel {
         do {
             try database.transaction {
                 for (_, item) in repos.enumerated() {
-                    try database.run(reposTable.insert(or: OnConflict.ignore, self.fullName <- item.fullName,
-                                                       self.url <- item.url, self.description <- item.description,
-                                                       self.stargazersCount <- item.stargazersCount))
+                    try database.run(reposTable.insert(
+                        or: OnConflict.ignore, self.fullName <- item.fullName,
+                        self.url <- item.url, self.description <- item.description,
+                        self.stargazersCount <- item.stargazersCount))
                 }
             }
         } catch {
@@ -58,35 +58,35 @@ class DBRepoModel {
     }
     
     func deleteRepo(_ repo: StarRepo) {
-        let repo = reposTable.select(self.id, self.fullName)
-            .filter(self.fullName == repo.fullName)
+        let repo = reposTable.select(id, fullName)
+            .filter(fullName == repo.fullName)
         
         do {
             try database.run(repo.delete())
         } catch {
             print(error)
         }
-        
     }
     
-    func getReposByTagModels(_ tagModels: [TagModel]) ->  [StarRepo]{
+    func getReposByTagModels(_ tagModels: [TagModel]) -> [StarRepo] {
         var starRepos = [StarRepo]()
         do {
             for (_, item) in tagModels.enumerated() {
-                let repos = try database.prepare(reposTable
-                    .select(self.id, self.fullName, self.url, self.description, self.stargazersCount)
-                    .filter(self.fullName == item.repo)
-                    .order(self.id.asc))
+                let repos = try database.prepare(
+                    reposTable
+                        .select(id, fullName, url, description, stargazersCount)
+                        .filter(fullName == item.repo)
+                        .order(id.asc))
                 
                 for repo in repos {
-                    starRepos.append(StarRepo(fullName: repo[self.fullName],
-                                              url: repo[self.url],
-                                              description: repo[self.description],
-                                              stargazersCount: repo[self.stargazersCount]))
+                    starRepos.append(StarRepo(
+                        fullName: repo[self.fullName],
+                        url: repo[self.url],
+                        description: repo[self.description],
+                        stargazersCount: repo[self.stargazersCount]))
                 }
-
             }
-                        
+            
         } catch {
             print(error)
         }

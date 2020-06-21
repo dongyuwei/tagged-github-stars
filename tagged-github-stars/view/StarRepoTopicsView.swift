@@ -11,12 +11,12 @@ struct StarRepoTopicsView: View {
             Divider()
             List {
                 HStack(spacing: 20) {
-                    ForEach(self.store.getTopicsOfCurrentRepo(),  id: \.self) { topic in
+                    ForEach(self.store.getTopicsOfCurrentRepo(), id: \.self) { topic in
                         Text(topic.name)
                     }
                 }
             }
         }.padding(10)
-        .frame(maxHeight: 100.0)
+            .frame(maxHeight: 100.0)
     }
 }

@@ -26,6 +26,6 @@ struct StarsFilterView: View {
             }
             Divider()
         }.padding(10)
-         .frame(width: 290.0)
+            .frame(width: 290.0)
     }
 }
