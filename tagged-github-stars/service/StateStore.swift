@@ -141,8 +141,10 @@ class StateStore: ObservableObject {
     }
     
     func addTag(_ tagInput: String, repo: String) {
-        let tags = tagInput.replacingOccurrences(of: "[,\\s\n]+", with: " ", options: .regularExpression, range: nil)
-            .components(separatedBy: " ")
+        let tags = tagInput.components(separatedBy: " ").map {
+          $0.trimmingCharacters(in: CharacterSet.whitespaces)
+        }
+        print("tagInput:", tagInput, repo, tags)
         tagModel.insertTags(tags, repo: repo)
         
         self.setTags(self.getTags(repo))

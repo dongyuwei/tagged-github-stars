@@ -9,12 +9,10 @@ struct StarsFilterView: View {
             HStack {
                 TextField("filter my stars", text: self.$filterText, onCommit: {
                     self.store.filterStars(filterText: self.filterText)
-                    self.filterText = ""
                 }).textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
                     self.store.filterStars(filterText: self.filterText)
-                    self.filterText = ""
                 }) {
                     Text("Search")
                 }
