@@ -1,5 +1,6 @@
 import Alamofire
 import KeychainAccess
+import SwiftSoup
 import SwiftUI
 
 let TOKEN_KEY = "tagged-github-stars"
@@ -172,6 +173,7 @@ class StateStore: ObservableObject {
         if tag == "" {
             return
         }
+        
         let tagModels = tagModel.getTagModelsByTag(tag)
         let repos: [StarRepo] = repoModel.getReposByTagModels(tagModels)
         var added = Set<StarRepo>()
@@ -184,10 +186,49 @@ class StateStore: ObservableObject {
         }
         stars = starRepos
         
-        print("----filterStars ", filterText, tagModels, stars)
+        filterStarsFromAPI(filterText)
     }
     
     func reloadStars() {
         loadStars(token, userName: basicUserInfo.name)
+    }
+    
+    func filterStarsFromAPI(_ query: String) {
+        AF.request("https://github.com/stars/\(basicUserInfo.name)/repositories?filter=all&q=\(query.trimmingCharacters(in: .whitespacesAndNewlines))", headers: [
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+        ])
+            .responseString { response in
+                if let html = response.value {
+                    var starred: [StarRepo] = []
+                    do {
+                        let doc: Document = try SwiftSoup.parse(html)
+                        let repoListEl: Element = try doc.select("ul.repo-list").first()!
+                        let repoItems: Elements = try repoListEl.select("li.source")
+                        for repo: Element in repoItems.array() {
+                            let link = try repo.select("a").first()!
+                            let url: String = try link.attr("href")
+                            let description: String = try repo.select(".py-1 p.d-inline-block").text()
+                            let fullName = String(url[String.Index(encodedOffset: 1) ..< String.Index(encodedOffset: url.count)])
+                            
+                            let stargazersCount: Int = try Int(
+                                repo.select("a.muted-link").first()!.text()
+                                    .replacingOccurrences(of: ",", with: "")) ?? 0
+                            
+                            starred.append(StarRepo(
+                                fullName: fullName,
+                                url: "https://github.com\(url)",
+                                description: description,
+                                stargazersCount: stargazersCount))
+                        }
+                    } catch let Exception.Error(_, message) {
+                        print(message)
+                    } catch {
+                        print("error")
+                    }
+                    
+                    self.stars = Array(_immutableCocoaArray: NSOrderedSet(array: self.stars + starred))
+                }
+            }
     }
 }

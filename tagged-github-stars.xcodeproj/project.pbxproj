@@ -25,6 +25,7 @@
 		38D8268F249A5B2300C0C5C0 /* DBRepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */; };
 		38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82690249B284A00C0C5C0 /* LoginView.swift */; };
 		38D82693249F332F00C0C5C0 /* PaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82692249F332F00C0C5C0 /* PaginationView.swift */; };
+		38D82696249F8F3300C0C5C0 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 38D82695249F8F3300C0C5C0 /* SwiftSoup */; };
 		38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992A247F43070031FBB9 /* AppDelegate.swift */; };
 		38FF992D247F43070031FBB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992C247F43070031FBB9 /* ContentView.swift */; };
 		38FF9932247F430F0031FBB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FF9931247F430F0031FBB9 /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 				38D8267124961D3D00C0C5C0 /* SQLite in Frameworks */,
 				38D8267D2496408600C0C5C0 /* URLImage in Frameworks */,
 				382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */,
+				38D82696249F8F3300C0C5C0 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,7 @@
 				38D8267024961D3D00C0C5C0 /* SQLite */,
 				38D8267C2496408600C0C5C0 /* URLImage */,
 				38D8268224965E1F00C0C5C0 /* KeychainAccess */,
+				38D82695249F8F3300C0C5C0 /* SwiftSoup */,
 			);
 			productName = "tagged-github-stars";
 			productReference = 38FF9927247F43070031FBB9 /* tagged-github-stars.app */;
@@ -306,6 +309,7 @@
 				38D8266F24961D3D00C0C5C0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				38D8267B2496408600C0C5C0 /* XCRemoteSwiftPackageReference "url-image" */,
 				38D8268124965E1E00C0C5C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				38D82694249F8F3300C0C5C0 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 38FF9928247F43070031FBB9 /* Products */;
 			projectDirPath = "";
@@ -721,6 +725,14 @@
 				minimumVersion = 4.2.0;
 			};
 		};
+		38D82694249F8F3300C0C5C0 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -743,6 +755,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 38D8268124965E1E00C0C5C0 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		38D82695249F8F3300C0C5C0 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38D82694249F8F3300C0C5C0 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
