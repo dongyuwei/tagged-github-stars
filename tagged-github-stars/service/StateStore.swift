@@ -19,6 +19,7 @@ class StateStore: ObservableObject {
     @Published var tags: [TagModel] = []
     @Published var topics: [TopicModel] = []
     @Published var pagination: [String: String] = [:]
+    @Published var loading: Bool = false
     
     func setToken(_ token: String) {
         self.token = token
@@ -84,7 +85,6 @@ class StateStore: ObservableObject {
                 if let result = response.value {
                     let data = result as! NSDictionary
                     let topics = data["names"] as! NSArray
-                    print("###\(repoFullName)  topics", topics)
                     var list: [TopicModel] = []
                     for topic in topics {
                         list.append(TopicModel(id: UUID(), name: topic as! String))
@@ -111,6 +111,7 @@ class StateStore: ObservableObject {
     }
     
     func loadStars(_ token: String, userName: String, url: String? = nil) {
+        loading = true
         let url2 = url ?? "https://api.github.com/users/\(userName)/starred?per_page=100"
         AF.request(url2, headers: buildHeaders(token))
             .responseJSON { response in
@@ -135,6 +136,7 @@ class StateStore: ObservableObject {
                             description: description,
                             stargazersCount: stargazersCount))
                     }
+                    self.loading = false
                     self.stars = starRepos
                     
                     self.repoModel.insertRepos(self.stars)
@@ -168,10 +170,10 @@ class StateStore: ObservableObject {
         setTags(getTags(repo))
     }
     
-    func filterStars(filterText: String) {
+    func filterStarsFromLocalDB(_ filterText: String) -> [StarRepo] {
         let tag = filterText.trimmingCharacters(in: .whitespacesAndNewlines)
         if tag == "" {
-            return
+            return []
         }
         
         let tagModels = tagModel.getTagModelsByTag(tag)
@@ -184,17 +186,16 @@ class StateStore: ObservableObject {
                 starRepos.append(repo)
             }
         }
-        stars = starRepos
-        
-        filterStarsFromAPI(filterText)
+        return starRepos
     }
     
     func reloadStars() {
         loadStars(token, userName: basicUserInfo.name)
     }
     
-    func filterStarsFromAPI(_ query: String) {
-        AF.request("https://github.com/stars/\(basicUserInfo.name)/repositories?filter=all&q=\(query.trimmingCharacters(in: .whitespacesAndNewlines))", headers: [
+    func filterStars(filterText: String) {
+        loading = true
+        AF.request("https://github.com/stars/\(basicUserInfo.name)/repositories?filter=all&q=\(filterText.trimmingCharacters(in: .whitespacesAndNewlines))", headers: [
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
         ])
@@ -226,8 +227,9 @@ class StateStore: ObservableObject {
                     } catch {
                         print("error")
                     }
-                    
-                    self.stars = Array(_immutableCocoaArray: NSOrderedSet(array: self.stars + starred))
+                    self.loading = false
+                    let localStars: [StarRepo] = self.filterStarsFromLocalDB(filterText)
+                    self.stars = Array(_immutableCocoaArray: NSOrderedSet(array: localStars + starred))
                 }
             }
     }

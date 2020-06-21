@@ -13,6 +13,9 @@ struct ContentView: View {
                         UserInfoView()
                         StarsFilterView()
                         PaginationView()
+                        if self.store.loading {
+                            Text("loading")
+                        }
                         List {
                             ForEach(store.stars) { starRepo in
                                 NavigationLink(destination: StarRepoDetailView(starRepo: starRepo).environmentObject(self.store)) {
