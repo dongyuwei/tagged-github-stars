@@ -26,7 +26,6 @@
 		38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82690249B284A00C0C5C0 /* LoginView.swift */; };
 		38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992A247F43070031FBB9 /* AppDelegate.swift */; };
 		38FF992D247F43070031FBB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992C247F43070031FBB9 /* ContentView.swift */; };
-		38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */; };
 		38FF9932247F430F0031FBB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FF9931247F430F0031FBB9 /* Assets.xcassets */; };
 		38FF9935247F430F0031FBB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FF9934247F430F0031FBB9 /* Preview Assets.xcassets */; };
 		38FF9938247F430F0031FBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FF9936247F430F0031FBB9 /* Main.storyboard */; };
@@ -68,12 +67,10 @@
 		38FF9927247F43070031FBB9 /* tagged-github-stars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tagged-github-stars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FF992A247F43070031FBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FF992C247F43070031FBB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		38FF992F247F43070031FBB9 /* tagged_github_stars.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tagged_github_stars.xcdatamodel; sourceTree = "<group>"; };
 		38FF9931247F430F0031FBB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38FF9934247F430F0031FBB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38FF9937247F430F0031FBB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38FF9939247F430F0031FBB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38FF993A247F430F0031FBB9 /* tagged_github_stars.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tagged_github_stars.entitlements; sourceTree = "<group>"; };
 		38FF993F247F430F0031FBB9 /* tagged-github-starsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tagged-github-starsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FF9943247F430F0031FBB9 /* tagged_github_starsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tagged_github_starsTests.swift; sourceTree = "<group>"; };
 		38FF9945247F430F0031FBB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,8 +173,6 @@
 				38FF9931247F430F0031FBB9 /* Assets.xcassets */,
 				38FF9936247F430F0031FBB9 /* Main.storyboard */,
 				38FF9939247F430F0031FBB9 /* Info.plist */,
-				38FF993A247F430F0031FBB9 /* tagged_github_stars.entitlements */,
-				38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */,
 				38FF9933247F430F0031FBB9 /* Preview Content */,
 			);
 			path = "tagged-github-stars";
@@ -364,7 +359,6 @@
 				38D82689249670DA00C0C5C0 /* DBTagModel.swift in Sources */,
 				382D55C7248531AC001B6ED2 /* StarRepoItemView.swift in Sources */,
 				38D8267A24963EBF00C0C5C0 /* UserInfoView.swift in Sources */,
-				38FF9930247F43070031FBB9 /* tagged_github_stars.xcdatamodeld in Sources */,
 				38D8268524966DAD00C0C5C0 /* StarRepoDetailView.swift in Sources */,
 				38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */,
 				38D8268724966E0D00C0C5C0 /* StarRepoTagsView.swift in Sources */,
@@ -747,19 +741,6 @@
 			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		38FF992E247F43070031FBB9 /* tagged_github_stars.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				38FF992F247F43070031FBB9 /* tagged_github_stars.xcdatamodel */,
-			);
-			currentVersion = 38FF992F247F43070031FBB9 /* tagged_github_stars.xcdatamodel */;
-			path = tagged_github_stars.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 38FF991F247F43070031FBB9 /* Project object */;
 }
