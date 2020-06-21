@@ -12,6 +12,7 @@ struct ContentView: View {
                     VStack {
                         UserInfoView()
                         StarsFilterView()
+                        PaginationView()
                         List {
                             ForEach(store.stars) { starRepo in
                                 NavigationLink(destination: StarRepoDetailView(starRepo: starRepo).environmentObject(self.store)) {

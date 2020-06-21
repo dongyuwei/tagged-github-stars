@@ -17,6 +17,7 @@ class StateStore: ObservableObject {
     
     @Published var tags: [TagModel] = []
     @Published var topics: [TopicModel] = []
+    @Published var pagination: [String: String] = [:]
 
     
     
@@ -53,7 +54,8 @@ class StateStore: ObservableObject {
     func buildHeaders(_ token: String) -> HTTPHeaders {
         let headers: HTTPHeaders = [
             "Authorization": "token \(token)",
-            "Accept": "application/vnd.github.mercy-preview+json",
+            "Accept": "application/json,application/vnd.github.mercy-preview+json",
+            "User-Agent": "dongyuwei",
         ]
         return headers
     }
@@ -98,19 +100,29 @@ class StateStore: ObservableObject {
         return self.topics
     }
     
-    func loadStars(_ token: String, userName: String) {
-        AF.request("https://api.github.com/users/\(userName)/starred", headers: buildHeaders(token))
+    func parseLinks(_ links: String) -> [String: String]{
+        var dictionary: [String: String] = [:]
+        links.components(separatedBy: ",").forEach({
+            let components = $0.components(separatedBy:"; ")
+            dictionary[components[1].replacingOccurrences(of: "rel=", with: "").replacingOccurrences(of: "\"", with: "")] = components[0].replacingOccurrences(of: "<", with: "")
+                .replacingOccurrences(of: ">", with: "")
+                .replacingOccurrences(of: " ", with: "")
+        })
+        return dictionary
+    }
+    
+    func loadStars(_ token: String, userName: String, url: String? = nil) {
+        let url2 = url ?? "https://api.github.com/users/\(userName)/starred?per_page=100";
+        AF.request(url2, headers: buildHeaders(token))
             .responseJSON { response in
+                print("===response.result", response.result)
                 if let links = response.response?.allHeaderFields["Link"] as? String {
-                    print("=======link====")
-                    print(links)
-                    print("=======link====")
+                    self.pagination = self.parseLinks(links)
                 }
                 
                 if let result = response.value {
                     let stars = result as! NSArray
-                    self.stars = []
-                    
+                    var starRepos: [StarRepo] = []
                     stars.forEach { item in
                         let obj = item as! NSDictionary
                         let fullName = obj["full_name"]! as! String
@@ -118,12 +130,13 @@ class StateStore: ObservableObject {
                         let description = obj.value(forKey: "description") as? String ?? ""
                         let stargazersCount = obj["stargazers_count"]! as! Int
                         
-                        self.addStarItem(StarRepo(
+                        starRepos.append(StarRepo(
                             fullName: fullName,
                             url: url,
                             description: description,
                             stargazersCount: stargazersCount))
                     }
+                    self.stars = starRepos
                     
                     self.repoModel.insertRepos(self.stars)
                 }
