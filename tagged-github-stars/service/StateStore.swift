@@ -10,14 +10,10 @@ class StateStore: ObservableObject {
     var tagModel: DBTagModel = DBTagModel()
     var repoModel: DBRepoModel = DBRepoModel()
     
-    var allTopics: [String: [TopicModel]] = [:]
-    
     @Published var token = ""
     @Published var stars: [StarRepo] = []
     @Published var basicUserInfo: BasicUserInfo = BasicUserInfo(name: "", avatarUrl: "")
-    
     @Published var tags: [TagModel] = []
-    @Published var topics: [TopicModel] = []
     @Published var pagination: [String: String] = [:]
     @Published var loading: Bool = false
     
@@ -54,7 +50,7 @@ class StateStore: ObservableObject {
     func buildHeaders(_ token: String) -> HTTPHeaders {
         let headers: HTTPHeaders = [
             "Authorization": "token \(token)",
-            "Accept": "application/json,application/vnd.github.mercy-preview+json",
+            "Accept": "application/json",
             "User-Agent": "dongyuwei",
         ]
         return headers
@@ -71,32 +67,6 @@ class StateStore: ObservableObject {
                     self.loadStars(token, userName: userName)
                 }
             }
-    }
-    
-    func getTopicsOfRepo(_ repoFullName: String) {
-        let cachedTopics = allTopics[repoFullName]
-        if cachedTopics != nil {
-            topics = cachedTopics!
-            return
-        }
-        
-        AF.request("https://api.github.com/repos/\(repoFullName)/topics", headers: buildHeaders(token))
-            .responseJSON { response in
-                if let result = response.value {
-                    let data = result as! NSDictionary
-                    let topics = data["names"] as! NSArray
-                    var list: [TopicModel] = []
-                    for topic in topics {
-                        list.append(TopicModel(id: UUID(), name: topic as! String))
-                    }
-                    self.topics = list
-                    self.allTopics[repoFullName] = list
-                }
-            }
-    }
-    
-    func getTopicsOfCurrentRepo() -> [TopicModel] {
-        return topics
     }
     
     func parseLinks(_ links: String) -> [String: String] {
@@ -210,7 +180,8 @@ class StateStore: ObservableObject {
                             let link = try repo.select("a").first()!
                             let url: String = try link.attr("href")
                             let description: String = try repo.select(".py-1 p.d-inline-block").text()
-                            let fullName = String(url[String.Index(encodedOffset: 1) ..< String.Index(encodedOffset: url.count)])
+                            
+                            let fullName = String(url[String.Index(utf16Offset: 1, in: url) ..< String.Index(encodedOffset: url.count)])
                             
                             let stargazersCount: Int = try Int(
                                 repo.select("a.muted-link").first()!.text()
