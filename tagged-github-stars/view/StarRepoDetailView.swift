@@ -11,8 +11,8 @@ struct StarRepoDetailView: View {
             GeometryReader { g in
                 ScrollView {
                     WebView(url: URL(string: self.starRepo.url)!)
-                    .frame(height: g.size.height)
-                    .tag(1)
+                        .frame(height: g.size.height)
+                        .tag(1)
                 }.frame(height: g.size.height)
             }
             

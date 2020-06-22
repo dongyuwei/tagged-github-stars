@@ -173,25 +173,28 @@ class StateStore: ObservableObject {
                     var starred: [StarRepo] = []
                     do {
                         let doc: Document = try SwiftSoup.parse(html)
-                        let repoListEl: Element = try doc.select("ul.repo-list").first()!
-                        let repoItems: Elements = try repoListEl.select("li.source")
-                        for repo: Element in repoItems.array() {
-                            let link = try repo.select("a").first()!
-                            let url: String = try link.attr("href")
-                            let description: String = try repo.select(".py-1 p.d-inline-block").text()
-                            
-                            let fullName = String(url[String.Index(encodedOffset: 1) ..< String.Index(encodedOffset: url.count)])
-                            
-                            let stargazersCount: Int = try Int(
-                                repo.select("a.muted-link").first()!.text()
-                                    .replacingOccurrences(of: ",", with: "")) ?? 0
-                            
-                            starred.append(StarRepo(
-                                fullName: fullName,
-                                url: "https://github.com\(url)",
-                                description: description,
-                                stargazersCount: stargazersCount))
+                        if try doc.select("ul.repo-list").count > 0 {
+                            let repoListEl: Element = try doc.select("ul.repo-list").first()!
+                            let repoItems: Elements = try repoListEl.select("li.source")
+                            for repo: Element in repoItems.array() {
+                                let link = try repo.select("a").first()!
+                                let url: String = try link.attr("href")
+                                let description: String = try repo.select(".py-1 p.d-inline-block").text()
+                                
+                                let fullName = String(url[String.Index(encodedOffset: 1) ..< String.Index(encodedOffset: url.count)])
+                                
+                                let stargazersCount: Int = try Int(
+                                    repo.select("a.muted-link").first()!.text()
+                                        .replacingOccurrences(of: ",", with: "")) ?? 0
+                                
+                                starred.append(StarRepo(
+                                    fullName: fullName,
+                                    url: "https://github.com\(url)",
+                                    description: description,
+                                    stargazersCount: stargazersCount))
+                            }
                         }
+                        
                     } catch let Exception.Error(_, message) {
                         print(message)
                     } catch {
@@ -204,7 +207,7 @@ class StateStore: ObservableObject {
                     var merged: [StarRepo] = []
                     var set: Set<String> = Set<String>()
                     for item in concated {
-                        if(!set.contains(item.fullName)) {
+                        if !set.contains(item.fullName) {
                             merged.append(item)
                             set.insert(item.fullName)
                         }
