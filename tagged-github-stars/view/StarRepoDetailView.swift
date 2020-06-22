@@ -8,7 +8,14 @@ struct StarRepoDetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             StarRepoTagsView(starRepo: starRepo)
-            WebView(url: URL(string: starRepo.url)!)
+            GeometryReader { g in
+                ScrollView {
+                    WebView(url: URL(string: self.starRepo.url)!)
+                    .frame(height: g.size.height)
+                    .tag(1)
+                }.frame(height: g.size.height)
+            }
+            
         }.onAppear(perform: {
             self.store.getTags(self.starRepo.fullName)
         })
