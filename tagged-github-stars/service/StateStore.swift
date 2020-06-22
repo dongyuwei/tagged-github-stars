@@ -85,7 +85,6 @@ class StateStore: ObservableObject {
         let url2 = url ?? "https://api.github.com/users/\(userName)/starred?per_page=100"
         AF.request(url2, headers: buildHeaders(token))
             .responseJSON { response in
-                print("===response.result", response.result)
                 if let links = response.response?.allHeaderFields["Link"] as? String {
                     self.pagination = self.parseLinks(links)
                 }
