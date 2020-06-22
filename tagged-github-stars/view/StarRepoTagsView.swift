@@ -42,6 +42,6 @@ struct StarRepoTagsView: View {
                 }
             }
         }.padding(10)
-            .frame(height: 200.0)
+            .frame(height: 150.0)
     }
 }

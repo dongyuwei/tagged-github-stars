@@ -181,7 +181,7 @@ class StateStore: ObservableObject {
                             let url: String = try link.attr("href")
                             let description: String = try repo.select(".py-1 p.d-inline-block").text()
                             
-                            let fullName = String(url[String.Index(utf16Offset: 1, in: url) ..< String.Index(encodedOffset: url.count)])
+                            let fullName = String(url[String.Index(encodedOffset: 1) ..< String.Index(encodedOffset: url.count)])
                             
                             let stargazersCount: Int = try Int(
                                 repo.select("a.muted-link").first()!.text()
@@ -199,8 +199,18 @@ class StateStore: ObservableObject {
                         print("error")
                     }
                     self.loading = false
+                    
                     let localStars: [StarRepo] = self.filterStarsFromLocalDB(filterText)
-                    self.stars = Array(_immutableCocoaArray: NSOrderedSet(array: localStars + starred))
+                    let concated = localStars + starred
+                    var merged: [StarRepo] = []
+                    var set: Set<String> = Set<String>()
+                    for item in concated {
+                        if(!set.contains(item.fullName)) {
+                            merged.append(item)
+                            set.insert(item.fullName)
+                        }
+                    }
+                    self.stars = merged
                 }
             }
     }
