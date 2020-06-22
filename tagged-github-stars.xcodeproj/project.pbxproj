@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382CE03724A0E9DB0077598D /* DBRepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03324A0E9DA0077598D /* DBRepoModel.swift */; };
+		382CE03824A0E9DB0077598D /* DBUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03424A0E9DB0077598D /* DBUserModel.swift */; };
+		382CE03924A0E9DB0077598D /* StarRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03524A0E9DB0077598D /* StarRepo.swift */; };
+		382CE03A24A0E9DB0077598D /* DBTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03624A0E9DB0077598D /* DBTagModel.swift */; };
 		382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 382D55C1248406E5001B6ED2 /* Alamofire */; };
 		382D55C424852E1E001B6ED2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55C324852E1E001B6ED2 /* WebView.swift */; };
 		382D55C7248531AC001B6ED2 /* StarRepoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55C6248531AC001B6ED2 /* StarRepoItemView.swift */; };
-		382D55D0248546DC001B6ED2 /* StarRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382D55CF248546DC001B6ED2 /* StarRepo.swift */; };
 		38D8267124961D3D00C0C5C0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 38D8267024961D3D00C0C5C0 /* SQLite */; };
-		38D8267324961DA500C0C5C0 /* DBUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8267224961DA500C0C5C0 /* DBUserModel.swift */; };
 		38D826782496314B00C0C5C0 /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D826772496314B00C0C5C0 /* StateStore.swift */; };
 		38D8267A24963EBF00C0C5C0 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8267924963EBF00C0C5C0 /* UserInfoView.swift */; };
 		38D8267D2496408600C0C5C0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 38D8267C2496408600C0C5C0 /* URLImage */; };
 		38D8268324965E1F00C0C5C0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 38D8268224965E1F00C0C5C0 /* KeychainAccess */; };
 		38D8268524966DAD00C0C5C0 /* StarRepoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268424966DAD00C0C5C0 /* StarRepoDetailView.swift */; };
 		38D8268724966E0D00C0C5C0 /* StarRepoTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268624966E0D00C0C5C0 /* StarRepoTagsView.swift */; };
-		38D82689249670DA00C0C5C0 /* DBTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82688249670D900C0C5C0 /* DBTagModel.swift */; };
 		38D8268D249912A000C0C5C0 /* StarsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268C249912A000C0C5C0 /* StarsFilterView.swift */; };
-		38D8268F249A5B2300C0C5C0 /* DBRepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */; };
 		38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82690249B284A00C0C5C0 /* LoginView.swift */; };
 		38D82693249F332F00C0C5C0 /* PaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D82692249F332F00C0C5C0 /* PaginationView.swift */; };
 		38D82696249F8F3300C0C5C0 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 38D82695249F8F3300C0C5C0 /* SwiftSoup */; };
@@ -52,17 +52,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		382CE03324A0E9DA0077598D /* DBRepoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBRepoModel.swift; path = model/DBRepoModel.swift; sourceTree = "<group>"; };
+		382CE03424A0E9DB0077598D /* DBUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBUserModel.swift; path = model/DBUserModel.swift; sourceTree = "<group>"; };
+		382CE03524A0E9DB0077598D /* StarRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarRepo.swift; path = model/StarRepo.swift; sourceTree = "<group>"; };
+		382CE03624A0E9DB0077598D /* DBTagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBTagModel.swift; path = model/DBTagModel.swift; sourceTree = "<group>"; };
 		382D55C324852E1E001B6ED2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		382D55C6248531AC001B6ED2 /* StarRepoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoItemView.swift; sourceTree = "<group>"; };
-		382D55CF248546DC001B6ED2 /* StarRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepo.swift; sourceTree = "<group>"; };
-		38D8267224961DA500C0C5C0 /* DBUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserModel.swift; sourceTree = "<group>"; };
 		38D826772496314B00C0C5C0 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
 		38D8267924963EBF00C0C5C0 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		38D8268424966DAD00C0C5C0 /* StarRepoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoDetailView.swift; sourceTree = "<group>"; };
 		38D8268624966E0D00C0C5C0 /* StarRepoTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRepoTagsView.swift; sourceTree = "<group>"; };
-		38D82688249670D900C0C5C0 /* DBTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTagModel.swift; sourceTree = "<group>"; };
 		38D8268C249912A000C0C5C0 /* StarsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsFilterView.swift; sourceTree = "<group>"; };
-		38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepoModel.swift; sourceTree = "<group>"; };
 		38D82690249B284A00C0C5C0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		38D82692249F332F00C0C5C0 /* PaginationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationView.swift; sourceTree = "<group>"; };
 		38FF9927247F43070031FBB9 /* tagged-github-stars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tagged-github-stars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,10 +128,10 @@
 		382D55CE248546B7001B6ED2 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				382D55CF248546DC001B6ED2 /* StarRepo.swift */,
-				38D8267224961DA500C0C5C0 /* DBUserModel.swift */,
-				38D82688249670D900C0C5C0 /* DBTagModel.swift */,
-				38D8268E249A5B2300C0C5C0 /* DBRepoModel.swift */,
+				382CE03324A0E9DA0077598D /* DBRepoModel.swift */,
+				382CE03624A0E9DB0077598D /* DBTagModel.swift */,
+				382CE03424A0E9DB0077598D /* DBUserModel.swift */,
+				382CE03524A0E9DB0077598D /* StarRepo.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -353,19 +353,19 @@
 			files = (
 				38D826782496314B00C0C5C0 /* StateStore.swift in Sources */,
 				38D8268D249912A000C0C5C0 /* StarsFilterView.swift in Sources */,
+				382CE03824A0E9DB0077598D /* DBUserModel.swift in Sources */,
 				38FF992D247F43070031FBB9 /* ContentView.swift in Sources */,
+				382CE03924A0E9DB0077598D /* StarRepo.swift in Sources */,
 				38D82693249F332F00C0C5C0 /* PaginationView.swift in Sources */,
-				38D8267324961DA500C0C5C0 /* DBUserModel.swift in Sources */,
 				382D55C424852E1E001B6ED2 /* WebView.swift in Sources */,
-				38D8268F249A5B2300C0C5C0 /* DBRepoModel.swift in Sources */,
 				38FF992B247F43070031FBB9 /* AppDelegate.swift in Sources */,
-				382D55D0248546DC001B6ED2 /* StarRepo.swift in Sources */,
-				38D82689249670DA00C0C5C0 /* DBTagModel.swift in Sources */,
 				382D55C7248531AC001B6ED2 /* StarRepoItemView.swift in Sources */,
 				38D8267A24963EBF00C0C5C0 /* UserInfoView.swift in Sources */,
 				38D8268524966DAD00C0C5C0 /* StarRepoDetailView.swift in Sources */,
 				38D82691249B284A00C0C5C0 /* LoginView.swift in Sources */,
 				38D8268724966E0D00C0C5C0 /* StarRepoTagsView.swift in Sources */,
+				382CE03A24A0E9DB0077598D /* DBTagModel.swift in Sources */,
+				382CE03724A0E9DB0077598D /* DBRepoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "tagged-github-stars/tagged_github_stars.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"tagged-github-stars/Preview Content\"";
@@ -550,7 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "tagged-github-stars/tagged_github_stars.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"tagged-github-stars/Preview Content\"";
