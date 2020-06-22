@@ -1,6 +1,9 @@
 ## tagged-github-stars
 An App to manage your Github stars like a boss
 
+![App](https://user-images.githubusercontent.com/112451/85295113-106e0900-b4d2-11ea-97d4-b368d9275754.png)
+
+
 ### Why a new App?
 - Github project有 Topics，是Project Owner 自己添加管理的，只能添加英文字符。
 - Tags是是站在用户的角度来看的，关注 project 的人可以按需添加。用户自定义Tag标签是 Topics 的有益补充。
