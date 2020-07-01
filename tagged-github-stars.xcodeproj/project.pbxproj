@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		382CE03724A0E9DB0077598D /* DBRepoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03324A0E9DA0077598D /* DBRepoModel.swift */; };
-		382CE03824A0E9DB0077598D /* DBUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03424A0E9DB0077598D /* DBUserModel.swift */; };
 		382CE03924A0E9DB0077598D /* StarRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03524A0E9DB0077598D /* StarRepo.swift */; };
 		382CE03A24A0E9DB0077598D /* DBTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CE03624A0E9DB0077598D /* DBTagModel.swift */; };
 		382D55C2248406E5001B6ED2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 382D55C1248406E5001B6ED2 /* Alamofire */; };
@@ -53,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		382CE03324A0E9DA0077598D /* DBRepoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBRepoModel.swift; path = model/DBRepoModel.swift; sourceTree = "<group>"; };
-		382CE03424A0E9DB0077598D /* DBUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBUserModel.swift; path = model/DBUserModel.swift; sourceTree = "<group>"; };
 		382CE03524A0E9DB0077598D /* StarRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarRepo.swift; path = model/StarRepo.swift; sourceTree = "<group>"; };
 		382CE03624A0E9DB0077598D /* DBTagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBTagModel.swift; path = model/DBTagModel.swift; sourceTree = "<group>"; };
 		382D55C324852E1E001B6ED2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			children = (
 				382CE03324A0E9DA0077598D /* DBRepoModel.swift */,
 				382CE03624A0E9DB0077598D /* DBTagModel.swift */,
-				382CE03424A0E9DB0077598D /* DBUserModel.swift */,
 				382CE03524A0E9DB0077598D /* StarRepo.swift */,
 			);
 			name = model;
@@ -353,7 +350,6 @@
 			files = (
 				38D826782496314B00C0C5C0 /* StateStore.swift in Sources */,
 				38D8268D249912A000C0C5C0 /* StarsFilterView.swift in Sources */,
-				382CE03824A0E9DB0077598D /* DBUserModel.swift in Sources */,
 				38FF992D247F43070031FBB9 /* ContentView.swift in Sources */,
 				382CE03924A0E9DB0077598D /* StarRepo.swift in Sources */,
 				38D82693249F332F00C0C5C0 /* PaginationView.swift in Sources */,
