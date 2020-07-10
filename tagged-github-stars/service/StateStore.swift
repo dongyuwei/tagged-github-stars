@@ -16,6 +16,7 @@ class StateStore: ObservableObject {
     @Published var tags: [TagModel] = []
     @Published var pagination: [String: String] = [:]
     @Published var loading: Bool = false
+    @Published var loginError: String = ""
     
     func setToken(_ token: String) {
         self.token = token
@@ -58,13 +59,22 @@ class StateStore: ObservableObject {
     
     func getUserInfo(_ token: String) {
         AF.request("https://api.github.com/user", headers: buildHeaders(token))
+            .validate()
             .responseJSON { response in
-                if let result = response.value {
-                    let user = result as! NSDictionary
-                    let userName = user["name"]! as! String
-                    self.basicUserInfo = BasicUserInfo(name: userName, avatarUrl: user["avatar_url"]! as! String)
-                    
-                    self.loadStars(token, userName: userName)
+                switch response.result {
+                case .success:
+                    if let result = response.value {
+                        self.loginError = ""
+                        self.setToken(token)
+                        let user = result as! NSDictionary
+                        let userName = user["name"]! as! String
+                        self.basicUserInfo = BasicUserInfo(name: userName, avatarUrl: user["avatar_url"]! as! String)
+                        
+                        self.loadStars(token, userName: userName)
+                    }
+                case let .failure(error):
+                    self.loginError = "Failed to login, please input valid token."
+                    print("Failed to get user info", error)
                 }
             }
     }
@@ -217,7 +227,6 @@ class StateStore: ObservableObject {
             }
     }
 }
-
 
 struct BasicUserInfo: Hashable {
     let name: String

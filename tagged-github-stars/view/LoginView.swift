@@ -19,13 +19,15 @@ struct LoginView: View {
                     .frame(width: 200)
                 
                 Button(action: {
-                    self.store.setToken(self.token)
                     self.store.getUserInfo(self.token)
                 }) {
                     Text("Login with Github personal token")
                 }
                 Spacer()
             }.padding(20)
+            if self.store.loginError != "" {
+                Text(self.store.loginError).foregroundColor(Color.red)
+            }
             
             Divider()
             
