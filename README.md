@@ -15,6 +15,10 @@ An App to manage your Github stars like a boss
 - 给关注的单个项目添加自定义标签，支持批量添加多个标签；可以删除标签；
 - 可以按自定义标签搜索关注的项目
 
+### todo
+optimize the state management: prefer local state. 
+
 ### 技术栈
+- Swift
 - SwiftUI
-- sqlite
+- SQLite
