@@ -10,10 +10,10 @@ An App to manage your Github stars like a boss
 
 ### Features
 - Login via Github personal access token. The token is stored safely in Mac Keychain.app.
-- Show all your Stars(starred github projects).
+- Show all your Stars.
 - Add/delete Tags for any github project.
 - Search starred projects via Tags and Topics. Note: the App will first search the github remote API, then search tags in local SQLite, then merge and show the results. So the search may be slow, depends on the API and network.
-- The App is tiny and the performance is good enough.
+- The App size is small, and the performance is good enough.
 
 ### Todo
 Optimize the state management: Prefer using local state to reduce the re-render of the UI, thus continue improving the App performance. 
